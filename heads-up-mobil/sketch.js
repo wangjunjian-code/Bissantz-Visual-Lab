@@ -10,7 +10,7 @@ let words = [
   "Data Mining",
   "Power BI",
   "Fußball!",
-  "Kaffee",
+  "Cappuccino",
   "Mundharmonika",
   "Urlaub",
   "Weihnachten",
