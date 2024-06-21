@@ -40,8 +40,8 @@ let bar = 0;
 let roundA = 1;
 let roundB = 1;
 let time, barTime, sectionTime;
-let timeOut = 100000; //1s (1000 milliseconds)
-let sectionTimeOut = 100000;
+let timeOut = 60000; //1s (1000 milliseconds)
+let sectionTimeOut = 60000;
 
 let playerA = true;
 let pointsA = 0;
