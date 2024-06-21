@@ -241,7 +241,7 @@ function game() {
   fill("#000000");
   textAlign(CENTER, CENTER);
   textWrap(WORD);
-  textLeading(15);
+ // textLeading(15);
   text(words[word], 0, 0, width - height / 10, height - height / 10);
   pop();
 
