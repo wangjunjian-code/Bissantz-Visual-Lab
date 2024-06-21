@@ -131,9 +131,9 @@ function startPage() {
     text(
       "Nach oben klappen: Überspringen, nach unten klappen: richtig.",
       0,
-      0 + height / 5,
+      0 + height / 6,
       width,
-      height / 2
+      height
     );
     pop();
   }
@@ -288,9 +288,9 @@ function over() {
   text(
     "Aktualisere die Seite, um das Spiel neu zu starten. \n ",
     0,
-    0 + height / 5,
+    0 + height / 6,
     width,
-    height / 2
+    height
   );
   pop();
 }
