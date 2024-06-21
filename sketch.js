@@ -47,7 +47,9 @@ function setup() {
     DeviceOrientationEvent.requestPermission()
       .catch(() => {
         let button = createButton("Sensor Aktiviren.");
-        button.style("font-size", "24px");
+        button.style(
+          "font-family: sans-serif; font-weight: bold;font-size: 2vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
+        );
         button.center();
         button.mousePressed(requestAccess);
         throw error;
@@ -55,11 +57,12 @@ function setup() {
       .then(() => {
         permissionGranted = true;
       });
-  } else Computer();
+  } else computer();
+
   R = 0;
 }
 
-function Computer() {
+function computer() {
   bg("#be0019");
   textFont(ExtraBold);
   fill("#ffffff");
@@ -82,33 +85,12 @@ function Computer() {
   textSize(height / 50);
   textLeading(height / 30);
   text(
-    "Diese Website ist für mobile geräten. \n Klicke auf den Link oben, um das Spiel auf dem Computer zu spielen!",
+    "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um.",
     width / 2,
     height / 2 + height / 3,
-    width - height / 3,
-    height / 2 - height / 3
+    width,
+    height / 2
   );
-
-  buttonBC("white", "#be0019", width / 2, height / 2 + height / 6);
-}
-
-function buttonBC(fillCol, fCol, x, y) {
-  fill(fillCol);
-  noStroke();
-  rectMode(CENTER);
-  rect(x, y, height / 6, height / 18, height / 200);
-  fill(fCol);
-  textFont(Bold);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textSize(height / 50);
-  text("zum Spiel", x, y - y / 200);
-
-  let a = createA("http://p5js.org/", "zum Spiel");
-  a.style(
-    "text-decoration: none; transform: translate(-50%, -50%);text-align: center; background-color: #ffffff;color: #be0019; padding: 2vw 8vh;opacity: 0;"
-  );
-  a.position(x, y);
 }
 
 function requestAccess() {
@@ -147,11 +129,11 @@ function startPage() {
     textSize(height / 50);
     textLeading(height / 30);
     text(
-      "Für die mobile Version hier bitte den Sensor aktivieren. \n Nach oben klappen: Überspringen, nach unten klappen: richtig.",
+      "Nach oben klappen: Überspringen, nach unten klappen: richtig.",
       0,
       0 + height / 4.2,
-      width - height / 8,
-      height / 2 - height / 8
+      width,
+      height / 2
     );
     pop();
   }
@@ -180,15 +162,14 @@ function touchStarted() {
       }
     }
   }
-  if (!permissionGranted) {
-  }
 }
 
 function draw() {
   if (!permissionGranted) {
-    Computer();
+    computer();
     return;
   }
+
   R = int(rotationY * 100);
   console.log(int(rotationY * 100));
 
@@ -276,22 +257,8 @@ function pause() {
   fill("#ffffff");
   textFont(ExtraBold);
   textSize(height / 10);
-  if (playerA === true)
-    text(
-      "Punkte: " + pointsA,
-      0,
-      0,
-      width - height / 10,
-      height / 2 - height / 10
-    );
-  else
-    text(
-      "Punkte: " + pointsB,
-      0,
-      0,
-      width - height / 10,
-      height / 2 - height / 10
-    );
+  if (playerA === true) text("Punkte: " + pointsA, 0, 0, width, height / 2);
+  else text("Punkte: " + pointsB, 0, 0, width, height / 2);
 
   textSize(height / 30);
   textFont(Bold);
@@ -310,13 +277,7 @@ function over() {
   fill("#ffffff");
   textFont(ExtraBold);
   textSize(height / 5);
-  text(
-    pointsA + " : " + pointsB,
-    0,
-    0 - height / 20,
-    width - height / 10,
-    height / 2 - height / 10
-  );
+  text(pointsA + " : " + pointsB, 0, 0 - height / 20, width, height / 2);
   textSize(height / 30);
   textFont(Bold);
   text("Gut gespielt!", 0, 0 + height / 8);
@@ -328,8 +289,8 @@ function over() {
     "Aktualisere die Seite, um das Spiel neu zu starten. \n ",
     0,
     0 + height / 4.2,
-    width - height / 8,
-    height / 2 - height / 8
+    width,
+    height / 2
   );
   pop();
 }
