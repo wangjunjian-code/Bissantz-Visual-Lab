@@ -88,9 +88,15 @@ function computer() {
     "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um.",
     width / 2,
     height / 2 + height / 3,
-    width,
+    width - width / 2,
     height / 2
   );
+
+        let button1 = createButton("Sensor Aktiviren.");
+        button1.style(
+          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
+        );
+        button1.position(width/2, height/2+height /6);
 }
 
 function requestAccess() {
