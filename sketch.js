@@ -138,8 +138,8 @@ function startPage() {
       "Nach oben klappen: Überspringen, nach unten klappen: richtig.",
       0,
       0 + height / 6,
-      width,
-      height
+      height,
+      width
     );
     pop();
   }
