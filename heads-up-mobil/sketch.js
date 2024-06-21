@@ -60,6 +60,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   //  createCanvas(displayWidth, displayHeight);
 
+  let shuffledArray = shuffleArray(words);
+  console.log(shuffledArray);
+
   if (
     typeof DeviceOrientationEvent !== "undefined" &&
     typeof DeviceOrientationEvent.requestPermission === "function"
@@ -80,6 +83,17 @@ function setup() {
   } else computer();
 
   R = 0;
+}
+
+function shuffleArray(array) {
+  let shuffled = array.slice();
+  
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let j = Math.floor(random(i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  return shuffled;
 }
 
 function computer() {
