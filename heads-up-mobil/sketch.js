@@ -54,14 +54,13 @@ function preload() {
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
+  let shuffledArray = shuffleArray(words);
+  console.log(shuffledArray);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //  createCanvas(displayWidth, displayHeight);
-
-  let shuffledArray = shuffleArray(words);
-  console.log(shuffledArray);
 
   if (
     typeof DeviceOrientationEvent !== "undefined" &&
