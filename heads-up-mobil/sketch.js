@@ -36,6 +36,7 @@ let rounds = 2; // ------------------------ changable ------------------------ /
 let word = 0;
 let Regular, Bold, ExtraBold;
 
+let R = 0;
 let bar = 0;
 let roundA = 1;
 let roundB = 1;
@@ -68,7 +69,7 @@ function setup() {
   ) {
     DeviceOrientationEvent.requestPermission()
       .catch(() => {
-        let button = createButton("Sensor Aktiviren.");
+        let button = createButton("Sensor Aktivieren.");
         button.style(
           "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
         );
@@ -80,7 +81,6 @@ function setup() {
         permissionGranted = true;
       });
   } else computer();
-  R = 0;
 }
 
 function shuffleArray(array) {
@@ -90,7 +90,6 @@ function shuffleArray(array) {
     let j = Math.floor(random(i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  
   return shuffled;
 }
 
@@ -101,7 +100,7 @@ function computer() {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textSize(height / 10);
-  text("Hi,", width / 2, height / 2 - height / 20);
+  text("Hi,", width / 2, height / 2 - height / 10);
 
   textSize(height / 30);
   textFont(Bold);
@@ -150,7 +149,7 @@ function startPage() {
     rotate(HALF_PI);
     textAlign(CENTER, CENTER);
     textWrap(WORD);
-    text("Hi!", 0, 0, width - height / 10, height / 2 - height / 20);
+    text("Heads Up!", 0, 0, width - height / 10, height / 2 - height / 10);
 
     if (pointsA <= 0) pointsA = 0;
     textSize(height / 30);
@@ -161,7 +160,7 @@ function startPage() {
     textSize(height / 50);
     textLeading(height / 30);
     text(
-      "Nach oben klappen: Überspringen, nach unten klappen: richtig.",
+      "Nach oben klappen: Überspringen, nach unten klappen: Richtig!",
       0,
       0 + height / 5,
       height,
@@ -203,7 +202,7 @@ function draw() {
   }
 
   R = int(rotationY * 100);
-  console.log(int(rotationY * 100));
+  //console.log(int(rotationY * 100));
 
   frameRate(60);
   bg("#ffffff");
@@ -212,7 +211,6 @@ function draw() {
   if (millis() - sectionTime >= sectionTimeOut) {
     sectionOn = false;
   }
-
   if (roundB >= rounds + 1) gameOn = false;
   if (gameStarted === true && gameOn === false) over();
   if (gameOn === true) {
@@ -240,13 +238,12 @@ function game() {
   fill("#000000");
   textAlign(CENTER, CENTER);
   textWrap(WORD);
- // textLeading(15);
-  text(words[word], 0, 0, width - height / 10, height - height / 10);
+  //textLeading(15);
+  text(shuffledArray[word], 0, 0, width - height / 10, height - height / 10);
   pop();
 
   if (R < -10 && R > -100) {
     bg("#be0019");
-
     push();
     translate(width / 2, height / 2);
     rotate(HALF_PI);
@@ -319,7 +316,7 @@ function over() {
   textSize(height / 50);
   textLeading(height / 30);
   text(
-    "Aktualisere die Seite, um das Spiel neu zu starten. \n ",
+    "Aktualisere die Seite, um das Spiel neu zu starten.",
     0,
     0 + height / 5,
     height,
