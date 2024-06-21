@@ -117,7 +117,7 @@ function draw() {
   bg("#ffffff");
   startPage();
 
-  if (millis() - sectionTime >= sectiont) {
+  if (millis() - sectionTime >= sectionTimeOut) {
     sectionOn = false;
   }
 
