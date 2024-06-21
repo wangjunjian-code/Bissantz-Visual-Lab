@@ -28,7 +28,7 @@ let words = [
   "Datensicherheit",
   "Reporting",
 ];
-let rounds = 1; // ------------------------ changable ------------------------ //
+let rounds = 2; // ------------------------ changable ------------------------ //
 
 let word = 0;
 let Regular, Bold, ExtraBold;
