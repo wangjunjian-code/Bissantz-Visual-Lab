@@ -9,7 +9,7 @@ let words = [
 let rounds = 1; // ------------------------ changable ------------------------ //
 
 let word = 0;
-let Light, Regular, Bold, ExtraBold;
+let Regular, Bold, ExtraBold;
 
 let bar = 0;
 let roundA = 1;
@@ -26,7 +26,6 @@ let gameOn = false;
 let sectionOn = false;
 
 function preload() {
-  Light = loadFont("OpenSans-Light.ttf");
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
