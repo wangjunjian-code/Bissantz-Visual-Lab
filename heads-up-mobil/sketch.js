@@ -12,7 +12,7 @@ let words = [
   "Fußball!",
   "Cappuccino",
   "Mundharmonika",
-  "Urlaub",
+  "Mallorca",
   "Weihnachten",
   "Nürnberg",
   "K-POP",
