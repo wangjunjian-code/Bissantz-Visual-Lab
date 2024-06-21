@@ -238,10 +238,11 @@ function game() {
   translate(width / 2, height / 2);
   rotate(HALF_PI);
   textFont(Bold);
-  textSize(height / 10);
+  textSize(height / 12);
   fill("#000000");
   textAlign(CENTER, CENTER);
   textWrap(WORD);
+  textLeading(15);
   text(words[word], 0, 0, width - height / 10, height - height / 10);
   pop();
 
