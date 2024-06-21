@@ -31,6 +31,7 @@ let words = [
   "Datensicherheit",
   "Reporting",
 ];
+let shuffledArray = [];
 let rounds = 2; // ------------------------ changable ------------------------ //
 
 let word = 0;
@@ -60,7 +61,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   //  createCanvas(displayWidth, displayHeight);
 
-  let shuffledArray = shuffleArray(words);
+  shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
 
   if (
