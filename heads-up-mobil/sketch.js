@@ -327,11 +327,11 @@ function over() {
 }
 
 function processBar() {
-  fill("#c8c8c8");
+  fill("#969696");
   rectMode(CORNER);
   barTime = millis() - sectionTime;
   bar = map(barTime, 0, sectionTimeOut, 0, height);
-  rect(0, 0, width / 50, bar);
+  rect(0, 0, width / 40, bar);
 }
 
 function bg(color) {
