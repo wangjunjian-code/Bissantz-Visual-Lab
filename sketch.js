@@ -48,9 +48,9 @@ function setup() {
       .catch(() => {
         let button = createButton("Sensor Aktiviren.");
         button.style(
-          "font-family: sans-serif; font-weight: bold;font-size: 2vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
+          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
         );
-        button.center();
+        button.position(width/2, height/2+height /6);
         button.mousePressed(requestAccess);
         throw error;
       })
@@ -91,12 +91,6 @@ function computer() {
     width - width / 2,
     height / 2
   );
-
-        let button1 = createButton("Sensor Aktiviren.");
-        button1.style(
-          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
-        );
-        button1.position(width/2, height/2+height /6);
 }
 
 function requestAccess() {
