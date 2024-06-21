@@ -5,6 +5,26 @@ let words = [
   "Einkauf",
   "Data Mining",
   "Fußball!",
+"Kaffee",
+"Frühstück",
+"Urlaub",
+"Abenteuer",
+"Lachen",
+"Musik",
+"Tanz",
+"Kino",
+"Buch",
+"Haustier",
+"Garten",
+"Kunst",
+"Data Warehouse",
+"Data Lake",
+"Big Data",
+"Datenintegration",
+"Self-Service",
+"Datenmodellierung",
+"Datensicherheit",
+"Reporting"
 ]; //mix before beginn?
 let rounds = 1; // ------------------------ changable ------------------------ //
 
@@ -33,6 +53,20 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  let shuffledArray = shuffleArray(words);
+  console.log(shuffledArray);
+}
+
+function shuffleArray(array) {
+  let shuffled = array.slice();
+  
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let j = Math.floor(random(i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  return shuffled;
 }
 
 function startPage() {
