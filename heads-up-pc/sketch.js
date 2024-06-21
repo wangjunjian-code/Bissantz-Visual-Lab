@@ -37,8 +37,7 @@ let bar = 0;
 let roundA = 1;
 let roundB = 1;
 let time, barTime, sectionTime;
-let timeOut = 10000; //1s (1000 milliseconds)
-let sectionTimeOut = 10000;
+let sectionTimeOut = 30000; //1s (1000 milliseconds)
 
 let playerA = true;
 let pointsA = 0;
@@ -51,12 +50,13 @@ function preload() {
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
-  let shuffledArray = shuffleArray(words);
-  console.log(shuffledArray);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  let shuffledArray = shuffleArray(words);
+  console.log(shuffledArray);
 }
 
 function shuffleArray(array) {
@@ -66,7 +66,6 @@ function shuffleArray(array) {
     let j = Math.floor(random(i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  
   return shuffled;
 }
 
@@ -89,12 +88,11 @@ function startPage() {
     textSize(height / 30);
     textFont(Bold);
     text("hier ist für Computer!", width / 2, height / 2 + height / 10);
-
     textFont(Regular);
     textSize(height / 50);
     textLeading(height / 30);
     text(
-      "Drück die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig.",
+      "Drück die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!",
       width / 2,
       height / 2 + height / 3,
       width - height / 3,
@@ -119,7 +117,7 @@ function draw() {
   bg("#ffffff");
   startPage();
 
-  if (millis() - sectionTime >= sectionTimeOut) {
+  if (millis() - sectionTime >= sectiont) {
     sectionOn = false;
   }
 
@@ -162,7 +160,7 @@ function game() {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   text(
-    words[word],
+    shuffledArray[word],
     width / 2,
     height / 2,
     width - height / 10,
@@ -260,7 +258,7 @@ function processBar() {
   fill("#c8c8c8");
   rectMode(CORNER);
   barTime = millis() - sectionTime;
-  bar = map(barTime, 0, timeOut, 0, width);
+  bar = map(barTime, 0, sectionTimeOut, 0, width);
   rect(0, height - 20, bar, 20);
 }
 
