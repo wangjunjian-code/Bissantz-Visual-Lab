@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <title>Bissantz Visual Lab</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: monospace;
+        color: rgb(50, 50, 50);
+        background-color: rgb(247, 247, 247);
+      }
+
+      .vertical-center {
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      a {
+        color: rgb(50, 50, 50);
+      }
+
+      h2 {
+        margin: 1dvh 0;
+      }
+
+      ::selection {
+        color: rgb(200, 200, 200);
+        background: rgb(50, 50, 50);
+      }
+    </style>
   </head>
   <body>
-    <main>
-    </main>
-    <script src="sketch.js"></script>
+    <div class="vertical-center">
+      <h2>Heads Up!</h2>
+      <a href="./BC_Spiel_heads-up_PC">PC</a>
+      <a href="./BC_Spiel_heads-up_mobil">Mobil</a>
+    </div>
   </body>
 </html>
