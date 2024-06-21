@@ -10,6 +10,26 @@ let words = [
   "Data Mining",
   "Power BI",
   "Fußball!",
+"Kaffee",
+"Frühstück",
+"Urlaub",
+"Abenteuer",
+"Lachen",
+"Musik",
+"Tanz",
+"Kino",
+"Buch",
+"Haustier",
+"Garten",
+"Kunst",
+"Data Warehouse",
+"Data Lake",
+"Big Data",
+"Datenintegration",
+"Self-Service",
+"Datenmodellierung",
+"Datensicherheit",
+"Reporting"
 ]; //mix before beginn?
 let rounds = 1; // ------------------------ changable ------------------------ //
 
