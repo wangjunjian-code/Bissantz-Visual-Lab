@@ -1,31 +1,33 @@
 let words = [
   "Business Intelligence",
+  "Taylor Swift",
   "Bissantz",
   "Planung",
-  "Einkauf",
+  "Marketing",
   "Data Mining",
+  "Power BI",
   "Fußball!",
-"Kaffee",
-"Frühstück",
-"Urlaub",
-"Abenteuer",
-"Lachen",
-"Musik",
-"Tanz",
-"Kino",
-"Buch",
-"Haustier",
-"Garten",
-"Kunst",
-"Data Warehouse",
-"Data Lake",
-"Big Data",
-"Datenintegration",
-"Self-Service",
-"Datenmodellierung",
-"Datensicherheit",
-"Reporting"
-]; //mix before beginn?
+  "Kaffee",
+  "Frühstück",
+  "Urlaub",
+  "Abenteuer",
+  "Lachen",
+  "Musik",
+  "Tanz",
+  "Kino",
+  "Buch",
+  "Haustier",
+  "Garten",
+  "Kunst",
+  "Data Warehouse",
+  "Data Lake",
+  "Big Data",
+  "Datenintegration",
+  "Self-Service",
+  "Datenmodellierung",
+  "Datensicherheit",
+  "Reporting",
+];
 let rounds = 1; // ------------------------ changable ------------------------ //
 
 let word = 0;
@@ -49,13 +51,12 @@ function preload() {
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
+  let shuffledArray = shuffleArray(words);
+  console.log(shuffledArray);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  let shuffledArray = shuffleArray(words);
-  console.log(shuffledArray);
 }
 
 function shuffleArray(array) {
