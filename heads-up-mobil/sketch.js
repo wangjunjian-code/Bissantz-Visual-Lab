@@ -150,7 +150,7 @@ function startPage() {
     rotate(HALF_PI);
     textAlign(CENTER, CENTER);
     textWrap(WORD);
-    text("Heads Up!", 0, 0);
+    text("Heads Up!", 0, -height / 20);
 
     if (pointsA <= 0) pointsA = 0;
     textSize(height / 30);
