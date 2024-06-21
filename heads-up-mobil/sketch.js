@@ -40,8 +40,7 @@ let bar = 0;
 let roundA = 1;
 let roundB = 1;
 let time, barTime, sectionTime;
-let timeOut = 60000; //1s (1000 milliseconds)
-let sectionTimeOut = 60000;
+let sectionTimeOut = 30000; //1s (1000 milliseconds)
 
 let playerA = true;
 let pointsA = 0;
@@ -54,13 +53,14 @@ function preload() {
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
-  let shuffledArray = shuffleArray(words);
-  console.log(shuffledArray);
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //  createCanvas(displayWidth, displayHeight);
+
+  let shuffledArray = shuffleArray(words);
+  console.log(shuffledArray);
 
   if (
     typeof DeviceOrientationEvent !== "undefined" &&
@@ -80,7 +80,6 @@ function setup() {
         permissionGranted = true;
       });
   } else computer();
-
   R = 0;
 }
 
@@ -333,7 +332,7 @@ function processBar() {
   fill("#c8c8c8");
   rectMode(CORNER);
   barTime = millis() - sectionTime;
-  bar = map(barTime, 0, timeOut, 0, height);
+  bar = map(barTime, 0, sectionTimeOut, 0, height);
   rect(0, 0, width / 50, bar);
 }
 
