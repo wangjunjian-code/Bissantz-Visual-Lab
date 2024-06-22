@@ -55,6 +55,7 @@ function preload() {
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
+  img = loadImage("./Bissantz-Logo_1000x100px_weiss.png");
 }
 
 function setup() {
@@ -185,7 +186,7 @@ function requestAccess() {
 function startPage() {
   if (gameOn === false) {
     //let rotaX = map(rotationX, -180, 180, -20, 20);
-    let rotaY = map(rotationY, 0, 180, 0, 10);
+    let rotaY = map(rotationY, PI, -PI, -HALF_PI, 0);
     rotateY(rotaY);
     // rotateX(rotaX);
     text("rotateY: " + rotateY + "; rotaY: " + rotaY + "; ");
@@ -204,6 +205,12 @@ function startPage() {
     );
     pop();
   }
+}
+
+function logo(col) {
+  imageMode(CENTER);
+  tint(col);
+  image(imgBVL, 0, 0, 300, 30);
 }
 
 function touchStarted() {
