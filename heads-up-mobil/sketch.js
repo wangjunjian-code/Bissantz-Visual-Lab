@@ -154,7 +154,7 @@ function h2(fCol, h2Text) {
 
 function descriptionCom(fCol, desText) {
   textFont(Regular);
-  textSize(height / 50);
+  textSize(height / 40);
   fill(fCol);
   textAlign(CENTER, CENTER);
   textWrap(WORD);
@@ -170,7 +170,7 @@ function descriptionCom(fCol, desText) {
 
 function description(fCol, desText) {
   textFont(Regular);
-  textSize(height / 35);
+  textSize(height / 40);
   fill(fCol);
   textAlign(CENTER, CENTER);
   textWrap(WORD);
