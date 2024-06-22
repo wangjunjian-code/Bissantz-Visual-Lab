@@ -32,7 +32,7 @@ let words = [
   "Reporting",
 ];
 let shuffledArray = [];
-let rounds = 1; // ------------------------ changable ------------------------ //
+let rounds = 0; // ------------------------ changable ------------------------ //
 
 let word = 0;
 let Regular, Bold, ExtraBold;
@@ -58,7 +58,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
 
   shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
@@ -100,13 +100,7 @@ function h1Com(fCol, h1Text) {
   textWrap(WORD);
   textLeading(height / 10);
   textFont(Bold);
-  text(
-    h1Text,
-    width / 2,
-    height / 2 - height / 20,
-    width - height / 5,
-    height - height / 5
-  );
+  text(h1Text, 0, -height / 20, width - height / 5, height - height / 5);
 }
 
 function h1(fCol, h1Text, pos) {
@@ -117,11 +111,17 @@ function h1(fCol, h1Text, pos) {
   textLeading(height / 12);
   if (pos === true) {
     textFont(Bold);
-    text(h1Text, 0, 0);
+    text(h1Text, -width / 2, height / 2);
   }
   if (pos === false) {
     textFont(ExtraBold);
-    text(h1Text, 0, -height / 20, height - height / 5, width - height / 5);
+    text(
+      h1Text,
+      -width / 2,
+      height / 2 - height / 20,
+      height - height / 5,
+      width - height / 5
+    );
   }
 }
 
@@ -132,13 +132,7 @@ function h2Com(fCol, h2Text) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 20);
-  text(
-    h2Text,
-    width / 2,
-    height / 2 + height / 10,
-    width - height / 5,
-    height - height / 5
-  );
+  text(h2Text, 0, height / 10, width - height / 5, height - height / 5);
 }
 
 function h2(fCol, h2Text) {
@@ -148,7 +142,13 @@ function h2(fCol, h2Text) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 20);
-  text(h2Text, 0, height / 18, height - height / 5, width - height / 5);
+  text(
+    h2Text,
+    -width / 2,
+    height / 2 + height / 18,
+    height - height / 5,
+    width - height / 5
+  );
 }
 
 function descriptionCom(fCol, desText) {
@@ -158,13 +158,7 @@ function descriptionCom(fCol, desText) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(
-    desText,
-    width / 2,
-    height / 2 + height / 3,
-    width - height / 5,
-    height - height / 5
-  );
+  text(desText, 0, height / 3, width - height / 5, height - height / 5);
 }
 
 function description(fCol, desText) {
@@ -174,7 +168,13 @@ function description(fCol, desText) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(desText, 0, width / 4, height - height / 5, width - height / 5);
+  text(
+    desText,
+    -width / 2,
+    height / 2 + width / 4,
+    height - height / 5,
+    width - height / 5
+  );
 }
 
 function computer() {
@@ -202,12 +202,18 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
+    //let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
+    //let rotaY = map(mouseY, 0, windowHeight, 0.1, -0.1);
+    rotateY(rotationY);
+    //rotateX(rotationY);
+
     bg("#ffffff");
     push();
-    translate(width / 2, height / 2);
+    translate(width / 2, height / 2, 200);
     rotate(HALF_PI);
     h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
+    translate(0, 0, -190);
     h2("#000000", "Tippe zum Start. ");
     description(
       "#000000",
@@ -244,7 +250,7 @@ function touchStarted() {
 function draw() {
   if (!permissionGranted) {
     computer();
-    return;
+    //return;
   }
 
   R = int(rotationY * 100);
@@ -350,13 +356,7 @@ function bg(color) {
   fill(color);
   noStroke();
   rectMode(CENTER);
-  rect(
-    width / 2,
-    height / 2,
-    width - height / 10,
-    height - height / 10,
-    height / 20
-  );
+  rect(0, 0, width - height / 10, height - height / 10, height / 20);
 }
 
 function changeWord() {
