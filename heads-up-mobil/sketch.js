@@ -188,7 +188,7 @@ function startPage() {
     let rotaY = map(rotationY, -PI, PI, -100, 0);
     rotateY(rotaY);
     // rotateX(rotaX);
-    console.log("rotateY: " + rotateY "; rotaY: "+ rotaY + "; ");
+    console.log("rotateY: " + rotateY + "; rotaY: " + rotaY + "; ");
 
     push();
     bg("#ffffff");
