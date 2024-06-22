@@ -185,7 +185,7 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
-    let rotaY = map(rotationY, -PI, PI, -9, 24);
+    let rotaY = map(rotationY, -PI, PI, -3, 8);
     rotateY(rotaY);
 
     push();
@@ -202,7 +202,9 @@ function startPage() {
     );
     scale(1, -1);
     translate(0, 0, -20);
-    logo(0);
+    bg("#ffffff");
+    translate(0, 0, -190);
+    logo(255);
     pop();
   }
 }
