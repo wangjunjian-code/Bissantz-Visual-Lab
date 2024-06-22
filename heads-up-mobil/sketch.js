@@ -190,20 +190,22 @@ function startPage() {
 
     push();
     bg("#ffffff");
-    translate(0, 0, 200);
+    translate(0, 0, 100);
     rotate(HALF_PI);
     h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
-    translate(0, 0, -190);
+    translate(0, 0, -90);
     h2("#000000", "Tippe zum Start. ");
     description(
       "#000000",
       "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
     );
-    scale(1, -1);
     translate(0, 0, -20);
-    bg("#ffffff");
+    rotate(-HALF_PI);
+    //bg("#002d71");
+    rotate(-HALF_PI);
     translate(0, 0, -10);
+    scale(1, -1);
     logo(255);
     pop();
   }
@@ -242,7 +244,7 @@ function touchStarted() {
 function draw() {
   if (!permissionGranted) {
     computer();
-    return;
+    //return;
   }
 
   R = int(rotationY * 100);
