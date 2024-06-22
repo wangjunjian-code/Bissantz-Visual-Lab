@@ -210,7 +210,7 @@ function startPage() {
 function logo(col) {
   imageMode(CENTER);
   tint(col);
-  image(imgBVL, 0, 0, 300, 30);
+  image(img, 0, 0, 300, 30);
 }
 
 function touchStarted() {
