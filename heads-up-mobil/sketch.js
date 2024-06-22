@@ -193,8 +193,9 @@ function startPage() {
     rotate(HALF_PI);
     h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
-    translate(0, 0, -90);
+    translate(0, 0, -40);
     h2("#000000", "Tippe zum Start. ");
+    translate(0, 0, -40);
     description(
       "#000000",
       "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
@@ -209,7 +210,7 @@ function startPage() {
 function logo(col) {
   imageMode(CENTER);
   tint(col);
-  image(img, 0, 0, 200, 20);
+  image(img, 0, 0, 400, 40);
 }
 
 function touchStarted() {
@@ -325,10 +326,11 @@ function over() {
   //console.log("game over.");
   push();
   rotate(HALF_PI);
-  translate(0, 0, 200);
+  translate(0, 0, 100);
   h1("#ffffff", pointsA + " : " + pointsB, false);
-  translate(0, 0, -190);
+  translate(0, 0, -400);
   h2("#ffffff", "Gut gespielt!");
+  translate(0, 0, -400);
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
   translate(0, 0, -200);
   scale(1, -1);
