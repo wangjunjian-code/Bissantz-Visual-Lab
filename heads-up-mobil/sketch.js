@@ -204,11 +204,12 @@ function startPage() {
   if (gameOn === false) {
     let rotaX = map(rotationX, -180, 180, -20, 20);
     let rotaY = map(rotationY, -180, 180, -20, 20);
-    bg("#ffffff");
-    translate(width, height, 0);
     rotateY(rotaY);
     rotateX(rotaX);
+
     push();
+    translate(0, 0, 0);
+    bg("#ffffff");
     translate(0, 0, 200);
     rotate(HALF_PI);
     h1("#000000", "Heads Up!", false);
@@ -250,7 +251,7 @@ function touchStarted() {
 function draw() {
   if (!permissionGranted) {
     computer();
-    //return;
+    return;
   }
 
   R = int(rotationY * 100);
