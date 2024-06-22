@@ -200,13 +200,9 @@ function startPage() {
       "#000000",
       "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
     );
-    translate(0, 0, -30);
-    rotate(-HALF_PI);
-    bg("#002d71");
-    rotate(HALF_PI);
-    translate(0, 0, -40);
+    translate(0, 0, -110);
     scale(1, -1);
-    logo(255);
+    logo(0);
     pop();
   }
 }
@@ -214,7 +210,7 @@ function startPage() {
 function logo(col) {
   imageMode(CENTER);
   tint(col);
-  image(img, 0, 0, 300, 30);
+  image(img, 0, 0, 200, 20);
 }
 
 function touchStarted() {
