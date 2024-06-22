@@ -185,10 +185,8 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
-    //let rotaX = map(rotationX, -180, 0, -20, 20);
-    let rotaY = map(rotationY, -PI, PI, -9, 24);
+    let rotaY = map(rotationY, -90, 240, -9, 24);
     rotateY(rotaY);
-    // rotateX(rotaX);
 
     push();
     bg("#ffffff");
@@ -197,12 +195,14 @@ function startPage() {
     h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
     translate(0, 0, -190);
-    //h2("#000000", "Tippe zum Start. ");
-    h2("#000000", "rotateY: " + rotateY + "; rotaY: " + rotaY + "; ");
+    h2("#000000", "Tippe zum Start. ");
     description(
       "#000000",
       "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
     );
+    scale(1, -1);
+    translate(0, 0, 20);
+    logo(0);
     pop();
   }
 }
