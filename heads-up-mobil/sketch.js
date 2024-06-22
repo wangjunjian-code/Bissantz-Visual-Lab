@@ -32,7 +32,7 @@ let words = [
   "Reporting",
 ];
 let shuffledArray = [];
-let rounds = 0; // ------------------------ changable ------------------------ //
+let rounds = 1; // ------------------------ changable ------------------------ //
 
 let word = 0;
 let Regular, Bold, ExtraBold;
@@ -330,6 +330,9 @@ function over() {
   translate(0, 0, -190);
   h2("#ffffff", "Gut gespielt!");
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
+  translate(0, 0, -200);
+  scale(1, -1);
+  logo(255);
   pop();
 }
 
