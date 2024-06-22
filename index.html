@@ -46,12 +46,17 @@
       }
     </style>
     <script>
+      function preload() {
+        imgBVL = loadImage("./bvl_Logo.png");
+      }
+
       function setup() {
         createCanvas(windowWidth, windowHeight);
       }
 
       function draw() {
         bg("#ffffff");
+        logo(0);
       }
 
       function bg(color) {
@@ -68,6 +73,12 @@
         );
       }
 
+      function logo(col) {
+        imageMode(CENTER);
+        tint(col);
+        image(imgBVL, width / 2, height / 2, 420, 43);
+      }
+
       function windowResized() {
         resizeCanvas(windowWidth, windowHeight);
       }
@@ -75,9 +86,9 @@
   </head>
   <body>
     <div class="vertical-center">
-      <h2>Heads Up!</h2>
-      <a href="./heads-up-pc">PC</a>
-      <a href="./heads-up-mobil">Mobil</a>
+      <h2><br /><br /><br /><br /><br /></h2>
+      <a href="./heads-up-pc">Heads Up! - Computer</a>
+      <a href="./heads-up-mobil">Heads Up! - Mobil</a>
     </div>
   </body>
 </html>

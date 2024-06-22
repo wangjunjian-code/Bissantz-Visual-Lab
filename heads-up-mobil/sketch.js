@@ -70,11 +70,11 @@ function setup() {
   ) {
     DeviceOrientationEvent.requestPermission()
       .catch(() => {
-        let button = createButton("Sensor Aktivieren.");
+        let button = createButton("Sensor aktivieren");
         button.style(
-          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
+          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 3vw; background-color: #ffffff;color: #be0019; padding: 2vh 5vh;border-radius: 8px;border: none;"
         );
-        button.position(width / 2, height / 2 + height / 6);
+        button.position(width / 2, height * 0.71);
         button.mousePressed(requestAccess);
         throw error;
       })
@@ -94,34 +94,97 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-function computer() {
-  bg("#be0019");
-  textFont(ExtraBold);
-  fill("#ffffff");
+function h1Com(fCol, h1Text) {
+  textSize(height / 10);
+  fill(fCol);
   textAlign(CENTER, CENTER);
   textWrap(WORD);
-  textSize(height / 10);
-  text("Hi,", width / 2, height / 2 - height / 10);
-
-  textSize(height / 30);
+  textLeading(height / 10);
   textFont(Bold);
   text(
-    "bist du am Handy?",
+    h1Text,
     width / 2,
-    height / 2 + height / 20,
-    width - height / 4,
-    height / 2 - height / 4
+    height / 2 - height / 20,
+    width - height / 5,
+    height - height / 5
   );
+}
 
+function h1(fCol, h1Text, pos) {
+  textSize(height / 10);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 10);
+  if (pos === true) {
+    textFont(Bold);
+    text(h1Text, 0, height / 20);
+  }
+  if (pos === false) {
+    textFont(ExtraBold);
+    text(h1Text, 0, -height / 20, height - height / 5, width - height / 5);
+  }
+}
+
+function h2Com(fCol, h2Text) {
+  textFont(Bold);
+  textSize(height / 30);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 20);
+  text(
+    h2Text,
+    width / 2,
+    height / 2 + height / 10,
+    width - height / 5,
+    height - height / 5
+  );
+}
+
+function h2(fCol, h2Text) {
+  textFont(Bold);
+  textSize(height / 30);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 20);
+  text(h2Text, 0, height / 18, height - height / 5, width - height / 5);
+}
+
+function descriptionCom(fCol, desText) {
   textFont(Regular);
   textSize(height / 50);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
   textLeading(height / 30);
   text(
-    "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um.",
+    desText,
     width / 2,
     height / 2 + height / 3,
-    width - width / 2,
-    height / 2
+    width - height / 5,
+    height - height / 5
+  );
+}
+
+function description(fCol, desText) {
+  textFont(Regular);
+  textSize(height / 50);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 30);
+  text(desText, 0, height / 8, height - height / 20, width - height / 20);
+}
+
+function computer() {
+  bg("#be0019");
+  h1Com("#ffffff", "Hi,");
+  h2Com("#ffffff", "bist du am Handy?");
+  descriptionCom(
+    "#ffffff",
+    "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um."
   );
 }
 
@@ -141,31 +204,15 @@ function requestAccess() {
 function startPage() {
   if (gameOn === false) {
     bg("#ffffff");
-    textFont(ExtraBold);
-    textSize(height / 10);
-    fill("#000000");
-
     push();
     translate(width / 2, height / 2);
     rotate(HALF_PI);
-    textAlign(CENTER, CENTER);
-    textWrap(WORD);
-    text("Heads Up!", 0, -height / 20);
-
+    h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
-    textSize(height / 30);
-    textFont(Bold);
-    text("Klicken zum Start. ", 0, 0 + height / 10);
-
-    textFont(Regular);
-    textSize(height / 50);
-    textLeading(height / 30);
-    text(
-      "Nach oben klappen: Überspringen, nach unten klappen: Richtig!",
-      0,
-      0 + height / 5,
-      height,
-      width
+    h2("#000000", "Tippe zum Start. ");
+    description(
+      "#000000",
+      "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
     );
     pop();
   }
@@ -184,7 +231,6 @@ function touchStarted() {
     if (gameOn === true && sectionOn === false) {
       sectionOn = true;
       sectionTime = millis();
-
       if (playerA === true) {
         roundA += 1;
         playerA = false;
@@ -234,13 +280,7 @@ function game() {
   push();
   translate(width / 2, height / 2);
   rotate(HALF_PI);
-  textFont(Bold);
-  textSize(height / 12);
-  fill("#000000");
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  //textLeading(15);
-  text(shuffledArray[word], 0, 0, width - height / 10, height - height / 10);
+  h1("#000000", shuffledArray[word], true);
   pop();
 
   if (R < -10 && R > -100) {
@@ -248,10 +288,7 @@ function game() {
     push();
     translate(width / 2, height / 2);
     rotate(HALF_PI);
-    textAlign(CENTER, CENTER);
-    fill("#ffffff");
-    textFont(ExtraBold);
-    text("Überspringen.", 0, 0);
+    h1("#ffffff", "Überspringen.", true);
     pop();
     frameRate(3);
     changeWord();
@@ -264,10 +301,7 @@ function game() {
     push();
     translate(width / 2, height / 2);
     rotate(HALF_PI);
-    textAlign(CENTER, CENTER);
-    fill("#ffffff");
-    textFont(ExtraBold);
-    text("Richtig!", 0, 0);
+    h1("#ffffff", "Richtig!", true);
     pop();
     frameRate(3);
     changeWord();
@@ -284,17 +318,10 @@ function pause() {
   push();
   translate(width / 2, height / 2);
   rotate(HALF_PI);
-  textAlign(CENTER, CENTER);
-  fill("#ffffff");
-  textFont(ExtraBold);
-  textSize(height / 10);
-  if (playerA === true) text("Punkte: " + pointsA, 0, 0, width, height / 2);
-  else text("Punkte: " + pointsB, 0, 0, width, height / 2);
-
-  textSize(height / 30);
-  textFont(Bold);
-  text(roundB + ". Runde", 0, 0 - height / 10);
-  text("Tausche aus und klicke weiter.", 0, 0 + height / 8);
+  if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
+  else h1("#ffffff", "Punkte: " + pointsB, false);
+  h2("#ffffff", roundB + ". Runde");
+  description("#ffffff", "Tausche aus und tippe zum Start.");
   pop();
 }
 
@@ -304,25 +331,10 @@ function over() {
   push();
   translate(width / 2, height / 2);
   rotate(HALF_PI);
-  textAlign(CENTER, CENTER);
-  fill("#ffffff");
-  textFont(ExtraBold);
-  textSize(height / 5);
-  text(pointsA + " : " + pointsB, 0, 0 - height / 20, width, height / 2);
-  textSize(height / 30);
-  textFont(Bold);
-  text("Gut gespielt!", 0, 0 + height / 8);
 
-  textFont(Regular);
-  textSize(height / 50);
-  textLeading(height / 30);
-  text(
-    "Aktualisere die Seite, um das Spiel neu zu starten.",
-    0,
-    0 + height / 5,
-    height,
-    width
-  );
+  h1("#ffffff", pointsA + " : " + pointsB);
+  h2("#ffffff", "Supper gespielt!");
+  description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
   pop();
 }
 
