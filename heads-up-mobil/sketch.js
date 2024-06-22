@@ -59,7 +59,6 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  //  createCanvas(displayWidth, displayHeight);
 
   shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
@@ -332,8 +331,8 @@ function over() {
   translate(width / 2, height / 2);
   rotate(HALF_PI);
 
-  h1("#ffffff", pointsA + " : " + pointsB);
-  h2("#ffffff", "Supper gespielt!");
+  h1("#ffffff", pointsA + " : " + pointsB, false);
+  h2("#ffffff", "Gut gespielt!");
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
   pop();
 }
