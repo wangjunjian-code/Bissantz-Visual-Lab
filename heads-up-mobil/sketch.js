@@ -74,7 +74,7 @@ function setup() {
         button.style(
           "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 2vh 2vh;border-radius: 10px;border: none;"
         );
-        button.position(width/2, height/2+height /6);
+        button.position(width / 2, height / 2 + height / 6);
         button.mousePressed(requestAccess);
         throw error;
       })
@@ -86,7 +86,7 @@ function setup() {
 
 function shuffleArray(array) {
   let shuffled = array.slice();
-  
+
   for (let i = shuffled.length - 1; i > 0; i--) {
     let j = Math.floor(random(i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];

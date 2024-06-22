@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
     <title>Bissantz Visual Lab</title>
     <style>
@@ -43,6 +45,33 @@
         background: rgb(50, 50, 50);
       }
     </style>
+    <script>
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+      }
+
+      function draw() {
+        bg("#ffffff");
+      }
+
+      function bg(color) {
+        background("#f7f7f7");
+        fill(color);
+        noStroke();
+        rectMode(CENTER);
+        rect(
+          width / 2,
+          height / 2,
+          width - height / 10,
+          height - height / 10,
+          height / 20
+        );
+      }
+
+      function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+      }
+    </script>
   </head>
   <body>
     <div class="vertical-center">

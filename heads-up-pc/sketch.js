@@ -29,7 +29,7 @@ let words = [
   "Reporting",
 ];
 let shuffledArray = [];
-let rounds = 2; // ------------------------ changable ------------------------ //
+let rounds = 2;
 
 let word = 0;
 let Regular, Bold, ExtraBold;
@@ -38,7 +38,7 @@ let bar = 0;
 let roundA = 1;
 let roundB = 1;
 let time, barTime, sectionTime;
-let sectionTimeOut = 30000; //1s (1000 milliseconds)
+let sectionTimeOut = 30000; // 30s // 1s (1000 milliseconds)
 
 let playerA = true;
 let pointsA = 0;
@@ -51,6 +51,8 @@ function preload() {
   Regular = loadFont("OpenSans-Regular.ttf");
   Bold = loadFont("OpenSans-Bold.ttf");
   ExtraBold = loadFont("OpenSans-ExtraBold.ttf");
+  img = loadImage("./Bissantz-Logo_1000x100px_weiss.png");
+  imgBVL = loadImage("./bvl_Logo.png");
 }
 
 function setup() {
@@ -62,7 +64,7 @@ function setup() {
 
 function shuffleArray(array) {
   let shuffled = array.slice();
-  
+
   for (let i = shuffled.length - 1; i > 0; i--) {
     let j = Math.floor(random(i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -70,34 +72,106 @@ function shuffleArray(array) {
   return shuffled;
 }
 
+function bg(color) {
+  background("#f7f7f7");
+  fill(color);
+  noStroke();
+  rectMode(CENTER);
+  rect(
+    width / 2,
+    height / 2,
+    width - height / 10,
+    height - height / 10,
+    height / 20
+  );
+}
+
+function h1(fCol, h1Text, pos) {
+  textSize(height / 10);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 10);
+  if (pos === true) {
+    textFont(Bold);
+    text(
+      h1Text,
+      width / 2,
+      height / 2,
+      width - height / 5,
+      height - height / 5
+    );
+  }
+  if (pos === false) {
+    textFont(ExtraBold);
+    text(
+      h1Text,
+      width / 2,
+      height / 2 - height / 20,
+      width - height / 5,
+      height - height / 5
+    );
+  }
+}
+
+function h2(fCol, h2Text) {
+  textFont(Bold);
+  textSize(height / 30);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 20);
+  text(
+    h2Text,
+    width / 2,
+    height / 2 + height / 10,
+    width - height / 5,
+    height - height / 5
+  );
+}
+
+function h3(fCol, h3Text) {
+  textFont(Bold);
+  textSize(height / 50);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 20);
+  text(
+    h3Text,
+    width / 2,
+    height / 2 - height / 6,
+    width - height / 5,
+    height - height / 5
+  );
+}
+
+function description(fCol, desText) {
+  textFont(Regular);
+  textSize(height / 50);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 30);
+  text(
+    desText,
+    width / 2,
+    height / 2 + height / 3,
+    width - height / 5,
+    height - height / 5
+  );
+}
+
 function startPage() {
   if (gameOn === false) {
     bg("#ffffff");
-    textFont(ExtraBold);
-    textSize(height / 10);
-    fill("#000000");
-    textAlign(CENTER, CENTER);
-    textWrap(WORD);
-    text(
-      "Hi,",
-      width / 2,
-      height / 2,
-      width - height / 10,
-      height / 2 - height / 20
-    );
+    h1("#000000", "Heads Up!", false);
+
     if (pointsA <= 0) pointsA = 0;
-    textSize(height / 30);
-    textFont(Bold);
-    text("hier ist für Computer!", width / 2, height / 2 + height / 10);
-    textFont(Regular);
-    textSize(height / 50);
-    textLeading(height / 30);
-    text(
-      "Drück die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!",
-      width / 2,
-      height / 2 + height / 3,
-      width - height / 3,
-      height / 2 - height / 3
+    h2("#000000", "hi, hier ist für Computer!");
+    description(
+      "#000000",
+      "Tippe zum Vollbild und drücke die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!"
     );
 
     if (keyIsPressed === true) {
@@ -111,6 +185,12 @@ function startPage() {
       }
     }
   }
+}
+
+function logo(col) {
+  imageMode(CENTER);
+  tint(col);
+  image(imgBVL, width / 2, height / 2, 420, 43);
 }
 
 function draw() {
@@ -155,25 +235,12 @@ function draw() {
 }
 
 function game() {
-  textFont(Bold);
-  textSize(height / 10);
-  fill("#000000");
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  text(
-    shuffledArray[word],
-    width / 2,
-    height / 2,
-    width - height / 10,
-    height - height / 10
-  );
+  h1("#000000", shuffledArray[word], true);
 
   if (keyIsPressed === true) {
     if (keyCode === UP_ARROW) {
       bg("#be0019");
-      fill("#ffffff");
-      textFont(ExtraBold);
-      text("Überspringen.", width / 2, height / 2);
+      h1("#ffffff", "Überspringen.", true);
       frameRate(3);
       changeWord();
       if (playerA === true) pointsA -= 1;
@@ -182,9 +249,7 @@ function game() {
       time = millis();
     } else if (keyCode === DOWN_ARROW) {
       bg("#002d71");
-      fill("#ffffff");
-      textFont(ExtraBold);
-      text("Richtig!", width / 2, height / 2);
+      h1("#ffffff", "Richtig!", true);
       frameRate(3);
       changeWord();
       if (playerA === true) pointsA += 1;
@@ -198,61 +263,22 @@ function game() {
 function pause() {
   bg("#002d71");
   console.log("one section over.");
-  fill("#ffffff");
-  textFont(Bold);
-  textSize(height / 40);
-  text(roundB + ". Runde", width / 2, height / 2 - height / 14);
-  textFont(ExtraBold);
-  textSize(height / 10);
-  if (playerA === true)
-    text(
-      "Punkte: " + pointsA,
-      width / 2,
-      height / 2,
-      width - height / 10,
-      height / 2 - height / 10
-    );
-  else
-    text(
-      "Punkte: " + pointsB,
-      width / 2,
-      height / 2,
-      width - height / 10,
-      height / 2 - height / 10
-    );
 
-  textSize(height / 30);
-  textFont(Bold);
-  text("Gut gemacht!", width / 2, height / 2 + height / 10);
+  h3("#ffffff", "Gut gemacht!");
 
-  textFont(Regular);
-  textSize(height / 50);
-  textLeading(height / 30);
-  text(
-    "Tausche aus und drücke die Leertaste.",
-    width / 2,
-    height / 2 + height / 3,
-    width - height / 3,
-    height / 2 - height / 3
-  );
+  if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
+  else h1("#ffffff", "Punkte: " + pointsB, false);
+
+  h2("#ffffff", "Runde: " + roundB + "/" + rounds);
+  description("#ffffff", "Tausche aus und drücke die Leertaste.");
 }
 
 function over() {
   bg("#002d71");
   console.log("game over.");
-  fill("#ffffff");
-  textFont(ExtraBold);
-  textSize(height / 5);
-  text(
-    pointsA + " : " + pointsB,
-    width / 2,
-    height / 2 - height / 20,
-    width - height / 10,
-    height / 2 - height / 10
-  );
-  textSize(height / 30);
-  textFont(Bold);
-  text("Gut gespielt!", width / 2, height / 2 + height / 10);
+  h1("#ffffff", pointsA + " : " + pointsB, false);
+  h2("#ffffff", "Gut gespielt!");
+  description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten!");
 }
 
 function processBar() {
@@ -261,20 +287,6 @@ function processBar() {
   barTime = millis() - sectionTime;
   bar = map(barTime, 0, sectionTimeOut, 0, width);
   rect(0, height - 20, bar, 20);
-}
-
-function bg(color) {
-  background("#f7f7f7");
-  fill(color);
-  noStroke();
-  rectMode(CENTER);
-  rect(
-    width / 2,
-    height / 2,
-    width - height / 10,
-    height - height / 10,
-    height / 20
-  );
 }
 
 function changeWord() {
