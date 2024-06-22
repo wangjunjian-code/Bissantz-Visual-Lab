@@ -178,7 +178,7 @@ function description(fCol, desText) {
   text(
     desText,
     0,
-    height - height / 5,
+    height - height / 10,
     height - height / 5,
     width - height / 5
   );
