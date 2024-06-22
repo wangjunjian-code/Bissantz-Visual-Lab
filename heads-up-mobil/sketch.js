@@ -204,7 +204,7 @@ function startPage() {
   if (gameOn === false) {
     //let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
     //let rotaY = map(mouseY, 0, windowHeight, 0.1, -0.1);
-    rotateY(rotationY);
+    rotateY(rotationY * 100);
     //rotateX(rotationY);
 
     bg("#ffffff");
