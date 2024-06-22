@@ -203,13 +203,14 @@ function requestAccess() {
 function startPage() {
   if (gameOn === false) {
     //let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
-    //let rotaY = map(mouseY, 0, windowHeight, 0.1, -0.1);
-    rotateY(rotationY * 100);
+    let rotaY = map(rotationY, -180, 180, 0.1, -0.1);
+
+    rotateY(rotaY);
     //rotateX(rotationY);
 
     bg("#ffffff");
     push();
-    translate(width / 2, height / 2, 200);
+    translate(0, 0, 200);
     rotate(HALF_PI);
     h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
