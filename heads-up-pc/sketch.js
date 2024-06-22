@@ -27,9 +27,10 @@ let words = [
   "Datenmodellierung",
   "Datensicherheit",
   "Reporting",
+  "Friends",
 ];
 let shuffledArray = [];
-let rounds = 2;
+let rounds = 1;
 
 let word = 0;
 let Regular, Bold, ExtraBold;
@@ -56,7 +57,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
 
   shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
@@ -77,13 +78,7 @@ function bg(color) {
   fill(color);
   noStroke();
   rectMode(CENTER);
-  rect(
-    width / 2,
-    height / 2,
-    width - height / 10,
-    height - height / 10,
-    height / 20
-  );
+  rect(0, 0, width - height / 10, height - height / 10, height / 20);
 }
 
 function h1(fCol, h1Text, pos) {
@@ -94,23 +89,11 @@ function h1(fCol, h1Text, pos) {
   textLeading(height / 10);
   if (pos === true) {
     textFont(Bold);
-    text(
-      h1Text,
-      width / 2,
-      height / 2,
-      width - height / 5,
-      height - height / 5
-    );
+    text(h1Text, 0, 0, width - height / 5, height - height / 5);
   }
   if (pos === false) {
     textFont(ExtraBold);
-    text(
-      h1Text,
-      width / 2,
-      height / 2 - height / 20,
-      width - height / 5,
-      height - height / 5
-    );
+    text(h1Text, 0, -height / 20, width - height / 5, height - height / 5);
   }
 }
 
@@ -121,13 +104,7 @@ function h2(fCol, h2Text) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 20);
-  text(
-    h2Text,
-    width / 2,
-    height / 2 + height / 10,
-    width - height / 5,
-    height - height / 5
-  );
+  text(h2Text, 0, height / 10, width - height / 5, height - height / 5);
 }
 
 function h3(fCol, h3Text) {
@@ -137,13 +114,7 @@ function h3(fCol, h3Text) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 20);
-  text(
-    h3Text,
-    width / 2,
-    height / 2 - height / 6,
-    width - height / 5,
-    height - height / 5
-  );
+  text(h3Text, 0, -height / 6, width - height / 5, height - height / 5);
 }
 
 function description(fCol, desText) {
@@ -153,27 +124,40 @@ function description(fCol, desText) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(
-    desText,
-    width / 2,
-    height / 2 + height / 3,
-    width - height / 5,
-    height - height / 5
-  );
+  text(desText, 0, 0 + height / 3, width - height / 5, height - height / 5);
 }
 
 function startPage() {
   if (gameOn === false) {
+    let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
+    let rotaY = map(mouseY, 0, windowHeight, 0.1, -0.1);
+    rotateY(rotaX);
+    rotateX(rotaY);
+    /*
+    if (
+      mouseX >= windowWidth - 20 ||
+      mouseX <= 20 ||
+      mouseY >= windowHeight - 20 ||
+      mouseY <= 20
+    ) {
+      rotateX(-rotaY);
+      rotateY(-rotaX);
+    }
+      */
+    push();
+    translate(0, 0, 0);
     bg("#ffffff");
+    translate(0, 0, 200);
     h1("#000000", "Heads Up!", false);
-
-    if (pointsA <= 0) pointsA = 0;
+    translate(0, 0, -190);
     h2("#000000", "hi, hier ist für Computer!");
     description(
       "#000000",
       "Tippe zum Vollbild und drücke die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!"
     );
+    pop();
 
+    if (pointsA <= 0) pointsA = 0;
     if (keyIsPressed === true) {
       if (keyCode === 32) {
         gameStarted = true;
@@ -195,7 +179,7 @@ function logo(col) {
 
 function draw() {
   frameRate(60);
-  bg("#ffffff");
+  background("#f7f7f7");
   startPage();
 
   if (millis() - sectionTime >= sectionTimeOut) {
@@ -223,6 +207,7 @@ function draw() {
       }
     }
     if (sectionOn === true) {
+      bg("#ffffff");
       game();
       processBar();
     }
@@ -264,21 +249,23 @@ function pause() {
   bg("#002d71");
   console.log("one section over.");
 
-  h3("#ffffff", "Gut gemacht!");
-
   if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
   else h1("#ffffff", "Punkte: " + pointsB, false);
 
-  h2("#ffffff", "Runde: " + roundB + "/" + rounds);
+  h2("#ffffff", roundB + ". Runde");
   description("#ffffff", "Tausche aus und drücke die Leertaste.");
 }
 
 function over() {
   bg("#002d71");
   console.log("game over.");
+  push();
+  translate(0, 0, 200);
   h1("#ffffff", pointsA + " : " + pointsB, false);
+  translate(0, 0, -190);
   h2("#ffffff", "Gut gespielt!");
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten!");
+  pop();
 }
 
 function processBar() {
@@ -286,7 +273,7 @@ function processBar() {
   rectMode(CORNER);
   barTime = millis() - sectionTime;
   bar = map(barTime, 0, sectionTimeOut, 0, width);
-  rect(0, height - 20, bar, 20);
+  rect(-width / 2, height / 2 - 20, bar, 20);
 }
 
 function changeWord() {
