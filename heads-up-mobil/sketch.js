@@ -175,13 +175,7 @@ function description(fCol, desText) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(
-    desText,
-    0,
-    height - height / 10,
-    height - height / 5,
-    width - height / 5
-  );
+  text(desText, 0, width / 2, height - height / 5, width - height / 5);
 }
 
 function computer() {
