@@ -185,7 +185,7 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
-    let rotaY = map(rotationY, -PI, PI, -6, 18);
+    let rotaY = map(rotationY, -PI, PI, -3, 8);
     rotateY(rotaY);
 
     push();
@@ -202,8 +202,8 @@ function startPage() {
     );
     translate(0, 0, -20);
     rotate(-HALF_PI);
-    bg("#002d71");
-    rotate(-HALF_PI);
+    //bg("#002d71");
+    rotate(HALF_PI);
     translate(0, 0, -190);
     scale(1, -1);
     logo(0);
