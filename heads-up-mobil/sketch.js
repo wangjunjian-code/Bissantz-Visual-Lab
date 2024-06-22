@@ -112,7 +112,7 @@ function h1(fCol, h1Text, pos) {
   textLeading(height / 12);
   if (pos === true) {
     textFont(Bold);
-    text(h1Text, -width / 2, height / 2);
+    text(h1Text, -0, 0);
   }
   if (pos === false) {
     textFont(ExtraBold);
@@ -187,7 +187,6 @@ function startPage() {
   if (gameOn === false) {
     let rotaY = map(rotationY, -PI, PI, -3, 9.28);
     rotateY(rotaY);
-
     push();
     bg("#ffffff");
     translate(0, 0, 100);
@@ -240,7 +239,7 @@ function touchStarted() {
 function draw() {
   if (!permissionGranted) {
     computer();
-    //return;
+    return;
   }
 
   R = int(rotationY * 100);
@@ -260,6 +259,7 @@ function draw() {
       pause();
     }
     if (sectionOn === true) {
+      bg("#ffffff");
       game();
       processBar();
     }
@@ -273,7 +273,7 @@ function draw() {
 
 function game() {
   push();
-  translate(width / 2, height / 2);
+  //translate(width / 2, height / 2);
   rotate(HALF_PI);
   h1("#000000", shuffledArray[word], true);
   pop();
@@ -281,7 +281,7 @@ function game() {
   if (R < -10 && R > -100) {
     bg("#be0019");
     push();
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     rotate(HALF_PI);
     h1("#ffffff", "Überspringen.", true);
     pop();
@@ -294,7 +294,7 @@ function game() {
   } else if (R < 100 && R > 10) {
     bg("#002d71");
     push();
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     rotate(HALF_PI);
     h1("#ffffff", "Richtig!", true);
     pop();
@@ -311,7 +311,7 @@ function pause() {
   bg("#002d71");
   //console.log("one section over.");
   push();
-  translate(width / 2, height / 2);
+  //translate(width / 2, height / 2);
   rotate(HALF_PI);
   if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
   else h1("#ffffff", "Punkte: " + pointsB, false);
@@ -341,7 +341,7 @@ function processBar() {
   rectMode(CORNER);
   barTime = millis() - sectionTime;
   bar = map(barTime, 0, sectionTimeOut, 0, height);
-  rect(0, 0, width / 40, bar);
+  rect(width / 2, -height / 2, width / 40, bar);
 }
 
 function bg(color) {
