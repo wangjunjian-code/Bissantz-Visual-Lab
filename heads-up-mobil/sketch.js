@@ -115,13 +115,7 @@ function h1(fCol, h1Text, pos) {
   }
   if (pos === false) {
     textFont(ExtraBold);
-    text(
-      h1Text,
-      -width / 2,
-      height / 2 - height / 20,
-      height - height / 5,
-      width - height / 5
-    );
+    text(h1Text, 0, -height / 20, height - height / 5, width - height / 5);
   }
 }
 
@@ -142,13 +136,7 @@ function h2(fCol, h2Text) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 20);
-  text(
-    h2Text,
-    -width / 2,
-    height / 2 + height / 18,
-    height - height / 5,
-    width - height / 5
-  );
+  text(h2Text, 0, height / 18, height - height / 5, width - height / 5);
 }
 
 function descriptionCom(fCol, desText) {
@@ -168,13 +156,7 @@ function description(fCol, desText) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(
-    desText,
-    -width / 2,
-    height / 2 + width / 4,
-    height - height / 5,
-    width - height / 5
-  );
+  text(desText, 0, width / 4, height - height / 5, width - height / 5);
 }
 
 function computer() {
@@ -202,13 +184,12 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
-    let rotaX = map(rotationX, -180, 180, -20, 20);
+    //let rotaX = map(rotationX, -180, 180, -20, 20);
     let rotaY = map(rotationY, -180, 180, -20, 20);
     rotateY(rotaY);
-    rotateX(rotaX);
+    // rotateX(rotaX);
 
     push();
-    translate(0, 0, 0);
     bg("#ffffff");
     translate(0, 0, 200);
     rotate(HALF_PI);
@@ -251,7 +232,7 @@ function touchStarted() {
 function draw() {
   if (!permissionGranted) {
     computer();
-    return;
+    //return;
   }
 
   R = int(rotationY * 100);
