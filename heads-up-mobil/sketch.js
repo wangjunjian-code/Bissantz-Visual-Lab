@@ -202,12 +202,12 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
-    //let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
-    let rotaY = map(rotationY, -180, 180, -10, 10);
+    let rotaX = map(rotationX, -180, 180, -20, 20);
+    let rotaY = map(rotationY, -180, 180, -20, 20);
     bg("#ffffff");
-    translate(width / 2, 0, 0);
+    translate(width, height, 0);
     rotateY(rotaY);
-    //rotateX(rotaX);
+    rotateX(rotaX);
     push();
     translate(0, 0, 200);
     rotate(HALF_PI);
@@ -257,7 +257,7 @@ function draw() {
   //console.log(int(rotationY * 100));
 
   frameRate(60);
-  bg("#ffffff");
+  background("#f7f7f7");
   startPage();
 
   if (millis() - sectionTime >= sectionTimeOut) {
