@@ -341,7 +341,7 @@ function processBar() {
   rectMode(CORNER);
   barTime = millis() - sectionTime;
   bar = map(barTime, 0, sectionTimeOut, 0, height);
-  rect(-width / 2, height / 2, width / 40, bar);
+  rect(-width / 2, -height / 2, width / 40, bar);
 }
 
 function bg(color) {
