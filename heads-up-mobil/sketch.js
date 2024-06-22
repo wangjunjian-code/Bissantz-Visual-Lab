@@ -72,9 +72,9 @@ function setup() {
       .catch(() => {
         let button = createButton("Sensor aktivieren");
         button.style(
-          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 2.5vw; background-color: #ffffff;color: #be0019; padding: 2vh 5vh;border-radius: 8px;border: none;"
+          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 1.5vh 3vh;border-radius: 8px;border: none;"
         );
-        button.position(width / 2, height * 0.71);
+        button.position(width / 2, height * 0.72);
         button.mousePressed(requestAccess);
         throw error;
       })
@@ -186,13 +186,6 @@ function computer() {
     "#ffffff",
     "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um."
   );
-
-  let button = createButton("Sensor aktivieren");
-  button.style(
-    "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 1.5vh 3vh;border-radius: 8px;border: none;"
-  );
-  button.position(width / 2, height * 0.72);
-  button.mousePressed(requestAccess);
 }
 
 function requestAccess() {
