@@ -186,7 +186,7 @@ function requestAccess() {
 function startPage() {
   if (gameOn === false) {
     //let rotaX = map(rotationX, -180, 180, -20, 20);
-    let rotaY = map(rotationY, PI, -PI, -100, 100);
+    let rotaY = map(rotationY, -PI, PI, -5, 5);
     rotateY(rotaY);
     // rotateX(rotaX);
     text("rotateY: " + rotateY + "; rotaY: " + rotaY + "; ");
