@@ -185,9 +185,10 @@ function requestAccess() {
 function startPage() {
   if (gameOn === false) {
     //let rotaX = map(rotationX, -180, 180, -20, 20);
-    let rotaY = map(rotationY, -180, 180, -20, 20);
+    let rotaY = map(rotationY, -PI, PI, -100, 0);
     rotateY(rotaY);
     // rotateX(rotaX);
+    console.log("rotateY: " + rotateY "; rotaY: "+ rotaY + "; ");
 
     push();
     bg("#ffffff");
@@ -232,7 +233,7 @@ function touchStarted() {
 function draw() {
   if (!permissionGranted) {
     computer();
-    //return;
+    return;
   }
 
   R = int(rotationY * 100);
@@ -316,10 +317,10 @@ function over() {
   bg("#002d71");
   //console.log("game over.");
   push();
-  translate(width / 2, height / 2);
   rotate(HALF_PI);
-
+  translate(0, 0, 200);
   h1("#ffffff", pointsA + " : " + pointsB, false);
+  translate(0, 0, -190);
   h2("#ffffff", "Gut gespielt!");
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
   pop();
