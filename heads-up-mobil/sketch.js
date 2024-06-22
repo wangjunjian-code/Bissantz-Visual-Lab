@@ -203,12 +203,11 @@ function requestAccess() {
 function startPage() {
   if (gameOn === false) {
     //let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
-    let rotaY = map(rotationY, -180, 180, 0.1, -0.1);
-
-    rotateY(rotaY);
-    //rotateX(rotationY);
-
+    let rotaY = map(rotationY, -180, 180, -10, 10);
     bg("#ffffff");
+    translate(width / 2, height / 2, 0);
+    rotateY(rotaY);
+    //rotateX(rotaX);
     push();
     translate(0, 0, 200);
     rotate(HALF_PI);
