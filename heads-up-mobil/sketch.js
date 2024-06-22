@@ -111,11 +111,11 @@ function h1Com(fCol, h1Text) {
 }
 
 function h1(fCol, h1Text, pos) {
-  textSize(height / 10);
+  textSize(height / 15);
   fill(fCol);
   textAlign(CENTER, CENTER);
   textWrap(WORD);
-  textLeading(height / 10);
+  textLeading(height / 15);
   if (pos === true) {
     textFont(Bold);
     text(h1Text, 0, height / 20);
@@ -170,12 +170,12 @@ function descriptionCom(fCol, desText) {
 
 function description(fCol, desText) {
   textFont(Regular);
-  textSize(height / 50);
+  textSize(50);
   fill(fCol);
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(desText, 0, height / 8, height - height / 20, width - height / 20);
+  text(desText, 0, height / 8, height - height / 10, width - height / 20);
 }
 
 function computer() {
