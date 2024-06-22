@@ -72,7 +72,7 @@ function setup() {
       .catch(() => {
         let button = createButton("Sensor aktivieren");
         button.style(
-          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 3vw; background-color: #ffffff;color: #be0019; padding: 2vh 5vh;border-radius: 8px;border: none;"
+          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 2.5vw; background-color: #ffffff;color: #be0019; padding: 2vh 5vh;border-radius: 8px;border: none;"
         );
         button.position(width / 2, height * 0.71);
         button.mousePressed(requestAccess);
@@ -122,7 +122,7 @@ function h1(fCol, h1Text, pos) {
   }
   if (pos === false) {
     textFont(ExtraBold);
-    text(h1Text, 0, -height / 20, width - height / 5, height - height / 5);
+    text(h1Text, 0, -height / 20, height - height / 5, width - height / 5);
   }
 }
 
@@ -149,7 +149,7 @@ function h2(fCol, h2Text) {
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 20);
-  text(h2Text, 0, height / 18, width - height / 5, height - height / 5);
+  text(h2Text, 0, height / 18, height - height / 5, width - height / 5);
 }
 
 function descriptionCom(fCol, desText) {
@@ -170,12 +170,12 @@ function descriptionCom(fCol, desText) {
 
 function description(fCol, desText) {
   textFont(Regular);
-  textSize(height / 40);
+  textSize(height / 35);
   fill(fCol);
   textAlign(CENTER, CENTER);
   textWrap(WORD);
   textLeading(height / 30);
-  text(desText, 0, height / 8, width - height / 10, height - height / 20);
+  text(desText, 0, height / 8, height - height / 10, width - height / 20);
 }
 
 function computer() {
@@ -186,6 +186,13 @@ function computer() {
     "#ffffff",
     "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um."
   );
+
+  let button = createButton("Sensor aktivieren");
+  button.style(
+    "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 1.5vh 3vh;border-radius: 8px;border: none;"
+  );
+  button.position(width / 2, height * 0.72);
+  button.mousePressed(requestAccess);
 }
 
 function requestAccess() {
