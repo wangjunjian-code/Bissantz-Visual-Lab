@@ -185,7 +185,7 @@ function requestAccess() {
 
 function startPage() {
   if (gameOn === false) {
-    let rotaY = map(rotationY, -90, 240, -9, 24);
+    let rotaY = map(rotationY, -PI, PI, -9, 24);
     rotateY(rotaY);
 
     push();
@@ -201,7 +201,7 @@ function startPage() {
       "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
     );
     scale(1, -1);
-    translate(0, 0, 20);
+    translate(0, 0, -20);
     logo(0);
     pop();
   }
