@@ -205,7 +205,7 @@ function startPage() {
     //let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
     let rotaY = map(rotationY, -180, 180, -10, 10);
     bg("#ffffff");
-    translate(width / 2, height / 2, 0);
+    translate(width / 2, 0, 0);
     rotateY(rotaY);
     //rotateX(rotaX);
     push();
