@@ -200,7 +200,7 @@ function startPage() {
       "#000000",
       "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
     );
-    translate(0, 0, -110);
+    translate(0, 0, -200);
     scale(1, -1);
     logo(0);
     pop();
