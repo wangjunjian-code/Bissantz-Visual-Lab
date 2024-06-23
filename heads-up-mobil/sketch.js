@@ -246,9 +246,9 @@ function over() {
   push();
   rotate(HALF_PI);
   translate(0, 0, 100);
-  h1("#ffffff", "Gut gespielt!", false);
+  h1("#ffffff", pointsA + " : " + pointsB, false);
   translate(0, 0, -40);
-  h2("#ffffff", pointsA + " : " + pointsB);
+  h2("#ffffff", "Gut gespielt!");
   translate(0, 0, -40);
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
   translate(0, 0, -200);
