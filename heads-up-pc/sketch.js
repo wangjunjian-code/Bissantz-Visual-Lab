@@ -29,17 +29,16 @@ let words = [
   "Reporting",
   "Friends",
 ];
-let shuffledArray = [];
-let rounds = 1;
-
 let word = 0;
 let Regular, Bold, ExtraBold;
+let shuffledArray = [];
 
-let bar = 0;
+let rounds = 1;
 let roundA = 1;
 let roundB = 1;
 let time, barTime, sectionTime;
 let sectionTimeOut = 30000; // 30s // 1s (1000 milliseconds)
+let bar = 0;
 
 let playerA = true;
 let pointsA = 0;
@@ -58,134 +57,17 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-
   shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
-}
-
-function shuffleArray(array) {
-  let shuffled = array.slice();
-
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    let j = Math.floor(random(i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
-function bg(color) {
-  background("#f7f7f7");
-  fill(color);
-  noStroke();
-  rectMode(CENTER);
-  rect(0, 0, width - height / 10, height - height / 10, height / 20);
-}
-
-function h1(fCol, h1Text, pos) {
-  textSize(height / 10);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 10);
-  if (pos === true) {
-    textFont(Bold);
-    text(h1Text, 0, 0, width - height / 5, height - height / 5);
-  }
-  if (pos === false) {
-    textFont(ExtraBold);
-    text(h1Text, 0, -height / 20, width - height / 5, height - height / 5);
-  }
-}
-
-function h2(fCol, h2Text) {
-  textFont(Bold);
-  textSize(height / 30);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 20);
-  text(h2Text, 0, height / 10, width - height / 5, height - height / 5);
-}
-
-function h3(fCol, h3Text) {
-  textFont(Bold);
-  textSize(height / 50);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 20);
-  text(h3Text, 0, -height / 6, width - height / 5, height - height / 5);
-}
-
-function description(fCol, desText) {
-  textFont(Regular);
-  textSize(height / 50);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 30);
-  text(desText, 0, 0 + height / 3, width - height / 5, height - height / 5);
-}
-
-function startPage() {
-  if (gameOn === false) {
-    let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
-    let rotaY = map(mouseY, 0, windowHeight, 0.1, -0.1);
-    rotateY(rotaX);
-    rotateX(rotaY);
-    /*
-    if (
-      mouseX >= windowWidth - 20 ||
-      mouseX <= 20 ||
-      mouseY >= windowHeight - 20 ||
-      mouseY <= 20
-    ) {
-      rotateX(-rotaY);
-      rotateY(-rotaX);
-    }
-      */
-    push();
-    translate(0, 0, 0);
-    bg("#ffffff");
-    translate(0, 0, 200);
-    h1("#000000", "Heads Up!", false);
-    translate(0, 0, -190);
-    h2("#000000", "hi, hier ist für Computer!");
-    description(
-      "#000000",
-      "Tippe zum Vollbild und drücke die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!"
-    );
-    pop();
-
-    if (pointsA <= 0) pointsA = 0;
-    if (keyIsPressed === true) {
-      if (keyCode === 32) {
-        gameStarted = true;
-        gameOn = true;
-        sectionOn = true;
-        bg("#ffffff");
-        time = millis();
-        sectionTime = millis();
-      }
-    }
-  }
-}
-
-function logo(col) {
-  imageMode(CENTER);
-  tint(col);
-  image(imgBVL, width / 2, height / 2, 420, 43);
 }
 
 function draw() {
   frameRate(60);
   background("#f7f7f7");
   startPage();
-
   if (millis() - sectionTime >= sectionTimeOut) {
     sectionOn = false;
   }
-
   if (roundB >= rounds + 1) gameOn = false;
   if (gameStarted === true && gameOn === false) over();
   if (gameOn === true) {
@@ -207,64 +89,115 @@ function draw() {
       }
     }
     if (sectionOn === true) {
-      bg("#ffffff");
+      card("#ffffff");
       game();
       processBar();
     }
   }
-
   if (pointsA <= 0) pointsA = 0;
   if (pointsB <= 0) pointsB = 0;
+  //console.log("roundA: " + roundA + "; roundB: " + roundB);
+}
 
-  console.log("roundA: " + roundA + "; roundB: " + roundB);
+function startPage() {
+  if (gameOn === false) {
+    let rotaX = map(mouseX, 0, windowWidth, -0.1, 0.1);
+    let rotaY = map(mouseY, 0, windowHeight, 0.1, -0.1);
+    rotateY(rotaX);
+    rotateX(rotaY);
+    /*
+    if (
+      mouseX >= windowWidth - 20 ||
+      mouseX <= 20 ||
+      mouseY >= windowHeight - 20 ||
+      mouseY <= 20
+    ) {
+      rotateX(-rotaY);
+      rotateY(-rotaX);
+    }
+      */
+    push();
+    card("#ffffff");
+    translate(0, 0, 200);
+    h1Content("#000000", "Heads Up!", false);
+    translate(0, 0, -190);
+    h2Content("#000000", "hi, hier ist für Computer!");
+    pContent(
+      "#000000",
+      "Tippe zum Vollbild und drücke die Leertaste zum Start des Spiels.  \n Pfeil Auf: Überspringen; Pfeil Runter: Richtig!"
+    );
+    pop();
+    if (pointsA <= 0) pointsA = 0;
+    if (keyIsPressed === true) {
+      if (keyCode === 32) {
+        gameStarted = true;
+        gameOn = true;
+        sectionOn = true;
+        card("#ffffff");
+        time = millis();
+        sectionTime = millis();
+      }
+    }
+  }
+}
+
+function shuffleArray(array) {
+  let shuffled = array.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let j = Math.floor(random(i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+function changeWord() {
+  word += 1;
+  if (word >= words.length) word = 0;
 }
 
 function game() {
-  h1("#000000", shuffledArray[word], true);
-
+  h1Content("#000000", shuffledArray[word], true);
   if (keyIsPressed === true) {
     if (keyCode === UP_ARROW) {
-      bg("#be0019");
-      h1("#ffffff", "Überspringen.", true);
+      card("#be0019");
+      h1Content("#ffffff", "Überspringen.", true);
       frameRate(3);
       changeWord();
       if (playerA === true) pointsA -= 1;
       else pointsB -= 1;
-      console.log("A win: " + pointsA + "; B win: " + pointsB);
+      //console.log("A win: " + pointsA + "; B win: " + pointsB);
       time = millis();
     } else if (keyCode === DOWN_ARROW) {
-      bg("#002d71");
-      h1("#ffffff", "Richtig!", true);
+      card("#002d71");
+      h1Content("#ffffff", "Richtig!", true);
       frameRate(3);
       changeWord();
       if (playerA === true) pointsA += 1;
       else pointsB += 1;
-      console.log("A win: " + pointsA + "; B win: " + pointsB);
+      //console.log("A win: " + pointsA + "; B win: " + pointsB);
       time = millis();
     }
   }
 }
 
 function pause() {
-  bg("#002d71");
+  card("#002d71");
   console.log("one section over.");
-
-  if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
-  else h1("#ffffff", "Punkte: " + pointsB, false);
-
-  h2("#ffffff", roundB + ". Runde");
-  description("#ffffff", "Tausche aus und drücke die Leertaste.");
+  if (playerA === true) h1Content("#ffffff", "Punkte: " + pointsA, false);
+  else h1Content("#ffffff", "Punkte: " + pointsB, false);
+  h2Content("#ffffff", roundB + ". Runde");
+  pContent("#ffffff", "Tausche aus und drücke die Leertaste.");
 }
 
 function over() {
-  bg("#002d71");
+  card("#002d71");
   console.log("game over.");
   push();
   translate(0, 0, 200);
-  h1("#ffffff", pointsA + " : " + pointsB, false);
+  h1Content("#ffffff", pointsA + " : " + pointsB, false);
   translate(0, 0, -190);
-  h2("#ffffff", "Gut gespielt!");
-  description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten!");
+  h2Content("#ffffff", "Gut gespielt!");
+  pContent("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten!");
   pop();
 }
 
@@ -276,9 +209,70 @@ function processBar() {
   rect(-width / 2, height / 2 - 20, bar, 20);
 }
 
-function changeWord() {
-  word += 1;
-  if (word >= words.length) word = 0;
+function h1Content(fCol, h1ContentText, pos) {
+  textSize(height / 10);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 10);
+  if (pos === true) {
+    textFont(Bold);
+    text(h1ContentText, 0, 0, width - height / 5, height - height / 5);
+  }
+  if (pos === false) {
+    textFont(ExtraBold);
+    text(
+      h1ContentText,
+      0,
+      -height / 20,
+      width - height / 5,
+      height - height / 5
+    );
+  }
+}
+
+function h2Content(fCol, h2ContentText) {
+  textFont(Bold);
+  textSize(height / 30);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 20);
+  text(h2ContentText, 0, height / 10, width - height / 5, height - height / 5);
+}
+
+function h3Content(fCol, h3ContentText) {
+  textFont(Bold);
+  textSize(height / 50);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 20);
+  text(h3ContentText, 0, -height / 6, width - height / 5, height - height / 5);
+}
+
+function pContent(fCol, desText) {
+  textFont(Regular);
+  textSize(height / 50);
+  fill(fCol);
+  textAlign(CENTER, CENTER);
+  textWrap(WORD);
+  textLeading(height / 30);
+  text(desText, 0, 0 + height / 3, width - height / 5, height - height / 5);
+}
+
+function logo(col) {
+  imageMode(CENTER);
+  tint(col);
+  image(imgBVL, width / 2, height / 2, 420, 43);
+}
+
+function card(color) {
+  background("#f7f7f7");
+  fill(color);
+  noStroke();
+  rectMode(CENTER);
+  rect(0, 0, width - height / 10, height - height / 10, height / 20);
 }
 
 function windowResized() {
