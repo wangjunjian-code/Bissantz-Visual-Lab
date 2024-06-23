@@ -29,16 +29,15 @@ let words = [
   "Reporting",
 ];
 let shuffledArray = [];
-let rounds = 1;
-
 let word = 0;
 let Regular, Bold, ExtraBold;
 
-let bar = 0;
 let roundA = 1;
 let roundB = 1;
+let rounds = 1;
 let time, barTime, sectionTime;
 let sectionTimeOut = 20000; // 30s // 1s (1000 milliseconds)
+let bar = 0;
 
 let playerA = true;
 let pointsA = 0;
@@ -57,19 +56,123 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
 }
 
+function draw() {
+  frameRate(60);
+  bg("#ffffff");
+  startPage();
+  if (millis() - sectionTime >= sectionTimeOut) {
+    sectionOn = false;
+  }
+  if (roundB >= rounds + 1) gameOn = false;
+  if (gameStarted === true && gameOn === false) over();
+  if (gameOn === true) {
+    if (sectionOn === false) {
+      pause();
+      if (keyIsPressed === true) {
+        if (keyCode === 32) {
+          sectionOn = true;
+          sectionTime = millis();
+          if (playerA === true) {
+            roundA += 1;
+            playerA = false;
+          } else {
+            roundB += 1;
+            playerA = true;
+          }
+        }
+      }
+    }
+    if (sectionOn === true) {
+      game();
+      processBar();
+    }
+  }
+  if (pointsA <= 0) pointsA = 0;
+  if (pointsB <= 0) pointsB = 0;
+  console.log("roundA: " + roundA + "; roundB: " + roundB);
+}
+
 function shuffleArray(array) {
   let shuffled = array.slice();
-
   for (let i = shuffled.length - 1; i > 0; i--) {
     let j = Math.floor(random(i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
+}
+
+function startPage() {
+  if (gameOn === false) {
+    bg("#ffffff");
+    h1("#000000", "Heads Up!", false);
+    if (pointsA <= 0) pointsA = 0;
+    h2("#000000", "hi, hier ist für Computer!");
+    description(
+      "#000000",
+      "Tippe zum Vollbild und drücke die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!"
+    );
+    if (keyIsPressed === true) {
+      if (keyCode === 32) {
+        gameStarted = true;
+        gameOn = true;
+        sectionOn = true;
+        bg("#ffffff");
+        time = millis();
+        sectionTime = millis();
+      }
+    }
+  }
+}
+
+function changeWord() {
+  word += 1;
+  if (word >= words.length) word = 0;
+}
+
+function game() {
+  h1("#000000", shuffledArray[word], true);
+  if (keyIsPressed === true) {
+    if (keyCode === UP_ARROW) {
+      bg("#be0019");
+      h1("#ffffff", "Überspringen.", true);
+      frameRate(3);
+      changeWord();
+      if (playerA === true) pointsA -= 1;
+      else pointsB -= 1;
+      console.log("A win: " + pointsA + "; B win: " + pointsB);
+      time = millis();
+    } else if (keyCode === DOWN_ARROW) {
+      bg("#002d71");
+      h1("#ffffff", "Richtig!", true);
+      frameRate(3);
+      changeWord();
+      if (playerA === true) pointsA += 1;
+      else pointsB += 1;
+      console.log("A win: " + pointsA + "; B win: " + pointsB);
+      time = millis();
+    }
+  }
+}
+
+function pause() {
+  bg("#002d71");
+  console.log("one section over.");
+  if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
+  else h1("#ffffff", "Punkte: " + pointsB, false);
+  h2("#ffffff", "Runde: " + roundB + "/" + rounds);
+  description("#ffffff", "Tausche aus und drücke die Leertaste.");
+}
+
+function over() {
+  bg("#002d71");
+  console.log("game over.");
+  h1("#ffffff", pointsA + " : " + pointsB, false);
+  h2("#ffffff", "Gut gespielt!");
+  description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten!");
 }
 
 function bg(color) {
@@ -162,121 +265,10 @@ function description(fCol, desText) {
   );
 }
 
-function startPage() {
-  if (gameOn === false) {
-    bg("#ffffff");
-    h1("#000000", "Heads Up!", false);
-
-    if (pointsA <= 0) pointsA = 0;
-    h2("#000000", "hi, hier ist für Computer!");
-    description(
-      "#000000",
-      "Tippe zum Vollbild und drücke die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!"
-    );
-
-    if (keyIsPressed === true) {
-      if (keyCode === 32) {
-        gameStarted = true;
-        gameOn = true;
-        sectionOn = true;
-        bg("#ffffff");
-        time = millis();
-        sectionTime = millis();
-      }
-    }
-  }
-}
-
 function logo(col) {
   imageMode(CENTER);
   tint(col);
   image(imgBVL, width / 2, height / 2, 420, 43);
-}
-
-function draw() {
-  frameRate(60);
-  bg("#ffffff");
-  startPage();
-
-  if (millis() - sectionTime >= sectionTimeOut) {
-    sectionOn = false;
-  }
-
-  if (roundB >= rounds + 1) gameOn = false;
-  if (gameStarted === true && gameOn === false) over();
-  if (gameOn === true) {
-    if (sectionOn === false) {
-      pause();
-      if (keyIsPressed === true) {
-        if (keyCode === 32) {
-          sectionOn = true;
-          sectionTime = millis();
-
-          if (playerA === true) {
-            roundA += 1;
-            playerA = false;
-          } else {
-            roundB += 1;
-            playerA = true;
-          }
-        }
-      }
-    }
-    if (sectionOn === true) {
-      game();
-      processBar();
-    }
-  }
-
-  if (pointsA <= 0) pointsA = 0;
-  if (pointsB <= 0) pointsB = 0;
-
-  console.log("roundA: " + roundA + "; roundB: " + roundB);
-}
-
-function game() {
-  h1("#000000", shuffledArray[word], true);
-
-  if (keyIsPressed === true) {
-    if (keyCode === UP_ARROW) {
-      bg("#be0019");
-      h1("#ffffff", "Überspringen.", true);
-      frameRate(3);
-      changeWord();
-      if (playerA === true) pointsA -= 1;
-      else pointsB -= 1;
-      console.log("A win: " + pointsA + "; B win: " + pointsB);
-      time = millis();
-    } else if (keyCode === DOWN_ARROW) {
-      bg("#002d71");
-      h1("#ffffff", "Richtig!", true);
-      frameRate(3);
-      changeWord();
-      if (playerA === true) pointsA += 1;
-      else pointsB += 1;
-      console.log("A win: " + pointsA + "; B win: " + pointsB);
-      time = millis();
-    }
-  }
-}
-
-function pause() {
-  bg("#002d71");
-  console.log("one section over.");
-
-  if (playerA === true) h1("#ffffff", "Punkte: " + pointsA, false);
-  else h1("#ffffff", "Punkte: " + pointsB, false);
-
-  h2("#ffffff", "Runde: " + roundB + "/" + rounds);
-  description("#ffffff", "Tausche aus und drücke die Leertaste.");
-}
-
-function over() {
-  bg("#002d71");
-  console.log("game over.");
-  h1("#ffffff", pointsA + " : " + pointsB, false);
-  h2("#ffffff", "Gut gespielt!");
-  description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten!");
 }
 
 function processBar() {
@@ -285,11 +277,6 @@ function processBar() {
   barTime = millis() - sectionTime;
   bar = map(barTime, 0, sectionTimeOut, 0, width);
   rect(0, height - 20, bar, 20);
-}
-
-function changeWord() {
-  word += 1;
-  if (word >= words.length) word = 0;
 }
 
 function windowResized() {
