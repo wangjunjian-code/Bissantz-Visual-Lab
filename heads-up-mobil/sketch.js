@@ -124,16 +124,6 @@ function requestAccess() {
   this.remove();
 }
 
-function computer() {
-  card("#be0019");
-  h1Com("#ffffff", "Hi,");
-  h2Com("#ffffff", "bist du am Handy?");
-  descriptionCom(
-    "#ffffff",
-    "Für die mobile Version aktiviere den Sensor und drehe dein Gerät um."
-  );
-}
-
 function touchStarted() {
   if (permissionGranted) {
     if (gameOn === false) {
@@ -165,6 +155,16 @@ function shuffleArray(array) {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
+}
+
+function computer() {
+  card("#be0019");
+  h1Com("#ffffff", "Hi,");
+  h2Com("#ffffff", "bist du mobil?");
+  descriptionCom(
+    "#ffffff",
+    "Zum Starten des Spiels bitte den Sensor aktivieren und das Gerät umdrehen."
+  );
 }
 
 function startPage() {
@@ -246,9 +246,9 @@ function over() {
   push();
   rotate(HALF_PI);
   translate(0, 0, 100);
-  h1("#ffffff", pointsA + " : " + pointsB, false);
+  h1("#ffffff", "Gut gespielt!", false);
   translate(0, 0, -40);
-  h2("#ffffff", "Gut gespielt!");
+  h2("#ffffff", pointsA + " : " + pointsB);
   translate(0, 0, -40);
   description("#ffffff", "Aktualisere die Seite, um das Spiel neu zu starten.");
   translate(0, 0, -200);
