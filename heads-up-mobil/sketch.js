@@ -101,7 +101,7 @@ function draw() {
       pause();
     }
     if (sectionOn === true) {
-      bg("#ffffff");
+      card("#ffffff");
       game();
       processBar();
     }
@@ -125,7 +125,7 @@ function requestAccess() {
 }
 
 function computer() {
-  bg("#be0019");
+  card("#be0019");
   h1Com("#ffffff", "Hi,");
   h2Com("#ffffff", "bist du am Handy?");
   descriptionCom(
@@ -140,7 +140,7 @@ function touchStarted() {
       gameStarted = true;
       gameOn = true;
       sectionOn = true;
-      bg("#ffffff");
+      card("#ffffff");
       time = millis();
       sectionTime = millis();
     }
@@ -172,7 +172,7 @@ function startPage() {
     let rotaY = map(rotationY, -PI, PI, -3, 9.28);
     rotateY(rotaY);
     push();
-    bg("#ffffff");
+    card("#ffffff");
     translate(0, 0, 100);
     rotate(HALF_PI);
     h1("#000000", "Heads Up!", false);
@@ -202,7 +202,7 @@ function game() {
   h1("#000000", shuffledArray[word], true);
   pop();
   if (cardR < -10 && cardR > -100) {
-    bg("#be0019");
+    card("#be0019");
     push();
     rotate(HALF_PI);
     h1("#ffffff", "Überspringen.", true);
@@ -214,7 +214,7 @@ function game() {
     //console.log("A win: " + pointsA + "; B win: " + pointsB);
     time = millis();
   } else if (cardR < 100 && cardR > 10) {
-    bg("#002d71");
+    card("#002d71");
     push();
     rotate(HALF_PI);
     h1("#ffffff", "Richtig!", true);
@@ -229,7 +229,7 @@ function game() {
 }
 
 function pause() {
-  bg("#002d71");
+  card("#002d71");
   //console.log("one section over.");
   push();
   rotate(HALF_PI);
@@ -241,7 +241,7 @@ function pause() {
 }
 
 function over() {
-  bg("#002d71");
+  card("#002d71");
   //console.log("game over.");
   push();
   rotate(HALF_PI);
@@ -337,7 +337,7 @@ function processBar() {
   rect(-width / 2, -height / 2, width / 40, bar);
 }
 
-function bg(color) {
+function card(color) {
   background("#f7f7f7");
   fill(color);
   noStroke();
