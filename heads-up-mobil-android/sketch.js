@@ -183,10 +183,10 @@ function startPage() {
   if (gameOn === false) {
     //let rotaY = map(androidR, -PI, PI, -3, 9.28);
     if (androidR >= -90 && androidR <= 0) {
-      let rotationUp = map(androidR, -90, 0, 0, 90);
+      let rotationUp = map(androidR, -90, 0, 0, 1);
       rotateY(rotationUp);
     } else if (androidR <= 90 && androidR >= 0) {
-      let rotationDown = map(androidR, 90, 0, 0, -90);
+      let rotationDown = map(androidR, 90, 0, 0, -1);
       rotateY(rotationDown);
     }
     push();
@@ -200,7 +200,7 @@ function startPage() {
     translate(0, 0, -40);
     description(
       "#000000",
-      "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
+      "Nach oben klappen: Überspringen; Nach unten klappen: Richtig!"
     );
     translate(0, 0, -200);
     scale(1, -1);
@@ -219,7 +219,7 @@ function game() {
   rotate(HALF_PI);
   h1("#000000", shuffledArray[word], true);
   pop();
-  if (cardR < -65 && cardR > 0) {
+  if (cardR > -65 && cardR < 0) {
     card("#be0019");
     push();
     rotate(HALF_PI);
@@ -231,7 +231,7 @@ function game() {
     else pointsB -= 1;
     //console.log("A win: " + pointsA + "; B win: " + pointsB);
     time = millis();
-  } else if (cardR < 65 && cardR > 10) {
+  } else if (cardR > 0 && cardR < 65) {
     card("#002d71");
     push();
     rotate(HALF_PI);
