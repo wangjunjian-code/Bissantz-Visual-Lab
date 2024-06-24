@@ -182,13 +182,13 @@ function computer() {
 function startPage() {
   if (gameOn === false) {
     //let rotaY = map(androidR, -PI, PI, -3, 9.28);
-    //if (androidR >= -90 && androidR <= 0) {
-    let rotationUp = map(androidR, -90, 90, 0, 10);
-    rotateY(rotationUp);
-    //} else if (androidR <= 90 && androidR >= 0) {
-    // let rotationDown = map(androidR, 90, 0, 0, -1);
-    //rotateY(rotationDown);
-    //}
+    if (androidR >= -90 && androidR <= 0) {
+      let rotationUp = map(androidR, -90, 0, 0, PI);
+      rotateY(rotationUp);
+    } else if (androidR <= 90 && androidR >= 0) {
+      let rotationDown = map(androidR, 90, 0, 0, -PI);
+      rotateY(rotationDown);
+    }
     push();
     card("#ffffff");
     translate(0, 0, 100);
