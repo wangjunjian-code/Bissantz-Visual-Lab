@@ -182,7 +182,7 @@ function startPage() {
     translate(0, 0, -40);
     description(
       "#000000",
-      "Nach oben klappen: Überspringen, nach unten klappen: Richtig!"
+      "Nach oben klappen: Überspringen; Nach unten klappen: Richtig!"
     );
     translate(0, 0, -200);
     scale(1, -1);
