@@ -136,26 +136,26 @@ function requestAccess() {
 */
 
 function touchStarted() {
-  if (permissionGranted) {
-    if (gameOn === false) {
-      gameStarted = true;
-      gameOn = true;
-      sectionOn = true;
-      card("#ffffff");
-      time = millis();
-      sectionTime = millis();
+  //if (permissionGranted) {
+  if (gameOn === false) {
+    gameStarted = true;
+    gameOn = true;
+    sectionOn = true;
+    card("#ffffff");
+    time = millis();
+    sectionTime = millis();
+  }
+  if (gameOn === true && sectionOn === false) {
+    sectionOn = true;
+    sectionTime = millis();
+    if (playerA === true) {
+      roundA += 1;
+      playerA = false;
+    } else {
+      roundB += 1;
+      playerA = true;
     }
-    if (gameOn === true && sectionOn === false) {
-      sectionOn = true;
-      sectionTime = millis();
-      if (playerA === true) {
-        roundA += 1;
-        playerA = false;
-      } else {
-        roundB += 1;
-        playerA = true;
-      }
-    }
+    //}
   }
 }
 
@@ -182,7 +182,13 @@ function computer() {
 function startPage() {
   if (gameOn === false) {
     //let rotaY = map(androidR, -PI, PI, -3, 9.28);
-    rotateY(androidR);
+    if (androidR >= -90 && androidR <= 0) {
+      let rotationUp = map(androidR, -90, 0, 0, 90);
+      rotateY(rotationUp);
+    } else if (androidR <= 90 && androidR >= 0) {
+      let rotationDown = map(androidR, 90, 0, 0, -90);
+      rotateY(rotationDown);
+    }
     push();
     card("#ffffff");
     translate(0, 0, 100);
@@ -213,7 +219,7 @@ function game() {
   rotate(HALF_PI);
   h1("#000000", shuffledArray[word], true);
   pop();
-  if (cardR < -10 && cardR > -100) {
+  if (cardR < -65 && cardR > 0) {
     card("#be0019");
     push();
     rotate(HALF_PI);
@@ -225,7 +231,7 @@ function game() {
     else pointsB -= 1;
     //console.log("A win: " + pointsA + "; B win: " + pointsB);
     time = millis();
-  } else if (cardR < 100 && cardR > 10) {
+  } else if (cardR < 65 && cardR > 10) {
     card("#002d71");
     push();
     rotate(HALF_PI);
