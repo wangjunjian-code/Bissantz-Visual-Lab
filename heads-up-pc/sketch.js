@@ -121,10 +121,10 @@ function startPage() {
     translate(0, 0, 200);
     h1Content("#000000", "Heads Up!", false);
     translate(0, 0, -190);
-    h2Content("#000000", "hi, hier ist für Computer!");
+    h2Content("#000000", "hi, hier ist für Desktop!");
     pContent(
       "#000000",
-      "Tippe zum Vollbild und drücke die Leertaste zum Start des Spiels.  \n Pfeil Auf: Überspringen; Pfeil Runter: Richtig!"
+      "Klicke zum Vollbild und drücke die Leertaste zum Start des Spiels.  \n Pfeil Auf: Überspringen; Pfeil Runter: Richtig!"
     );
     pop();
     if (pointsA <= 0) pointsA = 0;
