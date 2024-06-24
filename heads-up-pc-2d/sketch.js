@@ -110,7 +110,7 @@ function startPage() {
     bg("#ffffff");
     h1("#000000", "Heads Up!", false);
     if (pointsA <= 0) pointsA = 0;
-    h2("#000000", "hi, hier ist für Computer!");
+    h2("#000000", "hi, hier ist für Desktop!");
     description(
       "#000000",
       "Tippe zum Vollbild und drücke die Leertaste zum Start.  \n Pfeil Auf: Überspringen, Pfeil Runter: Richtig!"
