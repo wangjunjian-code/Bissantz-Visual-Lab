@@ -33,7 +33,18 @@
       }
 
       a {
-        color: rgb(50, 50, 50);
+        text-decoration: none;
+        background-color: #ffffff; /* Green */
+        /* border: 2px solid #000000;*/
+        border: none;
+        border-radius: 10px;
+        color: #000000;
+        padding: 2vh 10vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 2%;
       }
 
       h2 {
@@ -59,20 +70,6 @@
         //logo(0);
       }
 
-      function bg(color) {
-        background("#f7f7f7");
-        fill(color);
-        noStroke();
-        rectMode(CENTER);
-        rect(
-          width / 2,
-          height / 2,
-          width - height / 10,
-          height - height / 10,
-          height / 20
-        );
-      }
-
       function logo(col) {
         imageMode(CENTER);
         tint(col);
@@ -86,10 +83,11 @@
   </head>
   <body>
     <div class="vertical-center">
-      <h2><br /><br /><br /><br /><br /></h2>
-      <a href="./heads-up-pc">Heads Up! - Computer</a>
-      <a href="./heads-up-pc-2d">Heads Up! - Computer 2d</a>
-      <a href="./heads-up-mobil">Heads Up! - Mobil</a>
+      <h2>Heads Up!</h2>
+      <a href="./heads-up-pc">Desktop 3D</a>
+      <a href="./heads-up-mobil">Mobil 3D</a>
+      <a href="./heads-up-pc-2d">Desktop</a>
+      <a href="./heads-up-mobil-2d">Mobil</a>
     </div>
   </body>
 </html>
