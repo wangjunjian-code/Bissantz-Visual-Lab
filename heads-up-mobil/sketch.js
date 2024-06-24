@@ -69,7 +69,7 @@ function setup() {
       .catch(() => {
         let button = createButton("Sensor aktivieren");
         button.style(
-          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 1.5vh 3vh;border-radius: 8px;border: none;"
+          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #002d71; padding: 1.5vh 3vh;border-radius: 8px;border: none;"
         );
         button.position(width / 2, height * 0.72);
         button.mousePressed(requestAccess);
@@ -158,9 +158,9 @@ function shuffleArray(array) {
 }
 
 function computer() {
-  card("#be0019");
+  card("#002d71");
   h1Com("#ffffff", "Hi,");
-  h2Com("#ffffff", "bist du mobil?");
+  h2Com("#ffffff", "bist du auf iOS?");
   descriptionCom(
     "#ffffff",
     "Zum Starten des Spiels bitte den Sensor aktivieren und das Gerät umdrehen."
