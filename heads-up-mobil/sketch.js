@@ -1,6 +1,7 @@
 let button;
 let permissionGranted = false;
 let cardR = 0;
+let gammaR = 0;
 
 let words = [
   "Business Intelligence",
@@ -86,7 +87,8 @@ function draw() {
     computer();
     return;
   }
-  cardR = int(rotationY * 100);
+  //cardR = int(rotationY * 100);
+  cardR = gammaR;
   //console.log(int(rotationY * 100));
   frameRate(60);
   background("#f7f7f7");
@@ -110,6 +112,12 @@ function draw() {
   if (pointsB <= 0) pointsB = 0;
   //console.log("roundA: " + roundA + "; roundB: " + roundB);
 }
+
+function handleOrientation(event) {
+  gammaR = event.gamma; // In degree in the range [-90,90)
+}
+
+window.addEventListener("deviceorientation", handleOrientation);
 
 function requestAccess() {
   DeviceOrientationEvent.requestPermission()
@@ -169,8 +177,17 @@ function computer() {
 
 function startPage() {
   if (gameOn === false) {
-    let rotaY = map(rotationY, -PI, PI, -3, 9.28);
-    rotateY(rotaY);
+    //let rotaY = map(rotationY, -PI, PI, -3, 9.28);
+    //rotateY(rotaY);
+
+    if (gammaR >= -90 && gammaR <= 0) {
+      let rotationUp = map(gammaR, -90, 0, 0, PI);
+      rotateY(rotationUp);
+    } else if (gammaR <= 90 && gammaR >= 0) {
+      let rotationDown = map(gammaR, 90, 0, 0, -PI);
+      rotateY(rotationDown);
+    }
+
     push();
     card("#ffffff");
     translate(0, 0, 100);
@@ -201,7 +218,8 @@ function game() {
   rotate(HALF_PI);
   h1("#000000", shuffledArray[word], true);
   pop();
-  if (cardR < -10 && cardR > -100) {
+  //if (cardR < -10 && cardR > -100) {
+  if (cardR > -65 && cardR < 0) {
     card("#be0019");
     push();
     rotate(HALF_PI);
@@ -213,7 +231,8 @@ function game() {
     else pointsB -= 1;
     //console.log("A win: " + pointsA + "; B win: " + pointsB);
     time = millis();
-  } else if (cardR < 100 && cardR > 10) {
+    //} else if (cardR < 100 && cardR > 10) {
+  } else if (cardR > 0 && cardR < 65) {
     card("#002d71");
     push();
     rotate(HALF_PI);

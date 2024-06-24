@@ -1,7 +1,7 @@
 let button;
 let permissionGranted = false;
 let cardR = 0;
-let androidR = 0;
+let gammaR = 0;
 
 let words = [
   "Business Intelligence",
@@ -62,34 +62,10 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   shuffledArray = shuffleArray(words);
   console.log(shuffledArray);
-  /*  if (
-    typeof DeviceOrientationEvent !== "undefined" &&
-    typeof DeviceOrientationEvent.requestPermission === "function"
-  ) {
-    DeviceOrientationEvent.requestPermission()
-      .catch(() => {
-        let button = createButton("Sensor aktivieren");
-        button.style(
-          "transform: translate(-50%, -50%);font-family: 'Open Sans'; font-weight: 600;font-size: 4vw; background-color: #ffffff;color: #be0019; padding: 1.5vh 3vh;border-radius: 8px;border: none;"
-        );
-        button.position(width / 2, height * 0.72);
-        button.mousePressed(requestAccess);
-        throw error;
-      })
-      .then(() => {
-        permissionGranted = true;
-      });
-  } else computer();*/
 }
 
 function draw() {
-  /*
-  if (!permissionGranted) {
-    computer();
-    return;
-  }*/
-  cardR = androidR;
-  //console.log(int(rotationY * 100));
+  cardR = gammaR;
 
   frameRate(60);
   background("#f7f7f7");
@@ -115,28 +91,12 @@ function draw() {
 }
 
 function handleOrientation(event) {
-  androidR = event.gamma; // In degree in the range [-90,90)
+  gammaR = event.gamma; // In degree in the range [-90,90)
 }
 
 window.addEventListener("deviceorientation", handleOrientation);
 
-/*
-function requestAccess() {
-  DeviceOrientationEvent.requestPermission()
-    .then((response) => {
-      if (response == "granted") {
-        permissionGranted = true;
-      } else {
-        permissionGranted = false;
-      }
-    })
-    .catch(console.error);
-  this.remove();
-}
-*/
-
 function touchStarted() {
-  //if (permissionGranted) {
   if (gameOn === false) {
     gameStarted = true;
     gameOn = true;
@@ -155,7 +115,6 @@ function touchStarted() {
       roundB += 1;
       playerA = true;
     }
-    //}
   }
 }
 
@@ -165,28 +124,17 @@ function shuffleArray(array) {
     let j = Math.floor(random(i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+
   return shuffled;
 }
 
-/*
-function computer() {
-  card("#be0019");
-  h1Com("#ffffff", "Hi,");
-  h2Com("#ffffff", "bist du mobil?");
-  descriptionCom(
-    "#ffffff",
-    "Zum Starten des Spiels bitte den Sensor aktivieren und das Gerät umdrehen."
-  );
-}*/
-
 function startPage() {
   if (gameOn === false) {
-    //let rotaY = map(androidR, -PI, PI, -3, 9.28);
-    if (androidR >= -90 && androidR <= 0) {
-      let rotationUp = map(androidR, -90, 0, 0, PI);
+    if (gammaR >= -90 && gammaR <= 0) {
+      let rotationUp = map(gammaR, -90, 0, 0, PI);
       rotateY(rotationUp);
-    } else if (androidR <= 90 && androidR >= 0) {
-      let rotationDown = map(androidR, 90, 0, 0, -PI);
+    } else if (gammaR <= 90 && gammaR >= 0) {
+      let rotationDown = map(gammaR, 90, 0, 0, -PI);
       rotateY(rotationDown);
     }
     push();
@@ -275,16 +223,6 @@ function over() {
   pop();
 }
 
-function h1Com(fCol, h1Text) {
-  textSize(height / 10);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 10);
-  textFont(Bold);
-  text(h1Text, 0, -height / 20, width - height / 5, height - height / 5);
-}
-
 function h1(fCol, h1Text, pos) {
   textSize(height / 12);
   fill(fCol);
@@ -301,16 +239,6 @@ function h1(fCol, h1Text, pos) {
   }
 }
 
-function h2Com(fCol, h2Text) {
-  textFont(Bold);
-  textSize(height / 30);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 20);
-  text(h2Text, 0, height / 10, width - height / 5, height - height / 5);
-}
-
 function h2(fCol, h2Text) {
   textFont(Bold);
   textSize(height / 30);
@@ -319,16 +247,6 @@ function h2(fCol, h2Text) {
   textWrap(WORD);
   textLeading(height / 20);
   text(h2Text, 0, height / 18, height - height / 5, width - height / 5);
-}
-
-function descriptionCom(fCol, desText) {
-  textFont(Regular);
-  textSize(height / 40);
-  fill(fCol);
-  textAlign(CENTER, CENTER);
-  textWrap(WORD);
-  textLeading(height / 30);
-  text(desText, 0, height / 3, width - height / 5, height - height / 5);
 }
 
 function description(fCol, desText) {
